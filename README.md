@@ -52,7 +52,7 @@ Tài liệu được dịch bởi Claude Code và biên soạn bởi **Dương V
 
 Nếu tài liệu hữu ích, hãy mời mình một cốc cà phê nhé!
 
-![QR Code Donate](qr.png)
+<img src="qr.png" alt="QR Code Donate" width="100">
 
 ## License
 
