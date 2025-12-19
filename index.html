@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS146S: The Modern Software Developer - Stanford University</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Khóa học CS146S của Stanford về phát triển phần mềm hiện đại với AI. Học LLM, Prompt Engineering, MCP, AI Agents, và các công cụ AI coding tiên tiến.">
+    <meta name="keywords" content="Stanford, CS146S, AI Development, LLM, Prompt Engineering, Claude Code, Cursor, MCP, AI Agents, Software Development">
+    <meta name="author" content="Mihail Eric - Stanford University">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CS146S: The Modern Software Developer - Stanford">
+    <meta property="og:description" content="Khóa học Stanford về phát triển phần mềm hiện đại với AI. Học cách sử dụng LLM, AI Agents, và các công cụ AI coding.">
+    <meta property="og:image" content="https://themodernsoftware.dev/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CS146S: The Modern Software Developer">
+    <meta name="twitter:description" content="Khóa học Stanford về AI Software Development - Tiếng Việt">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+
+    <style>
+        /* Dark Theme (Default) */
+        :root {
+            --bg-dark: #0F172A;
+            --bg-card: #1E293B;
+            --bg-card-hover: #334155;
+            --primary: #8B5CF6;
+            --primary-light: #A78BFA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #334155;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --gradient: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+            --code-bg: #0D1117;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-dark: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F1F5F9;
+            --primary: #7C3AED;
+            --primary-light: #8B5CF6;
+            --secondary: #0891B2;
+            --accent: #D97706;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --success: #059669;
+            --warning: #D97706;
+            --error: #DC2626;
+            --gradient: linear-gradient(135deg, #7C3AED 0%, #0891B2 100%);
+            --code-bg: #F1F5F9;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            transform: scale(1.1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: var(--gradient);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 10;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Course Info */
+        .course-info {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid var(--border);
+        }
+
+        .course-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+
+        .course-info p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-item-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-card-hover);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .info-item-text h4 {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-item-text p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Curriculum Table */
+        .curriculum {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid var(--border);
+        }
+
+        .curriculum h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-light);
+            text-align: center;
+        }
+
+        .curriculum-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .curriculum-table th,
+        .curriculum-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .curriculum-table th {
+            background: var(--bg-card-hover);
+            color: var(--primary-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .curriculum-table tr:hover td {
+            background: var(--bg-card-hover);
+        }
+
+        .curriculum-table td:first-child {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        /* Guest Speakers */
+        .speakers {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid var(--border);
+        }
+
+        .speakers h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-light);
+            text-align: center;
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .speaker-card {
+            background: var(--bg-card-hover);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .speaker-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .speaker-card .role {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .speaker-card .company {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Instructor */
+        .instructor {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .instructor-avatar {
+            width: 150px;
+            height: 150px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+
+        .instructor-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .instructor-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary-light);
+        }
+
+        .instructor-info .title {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .instructor-info p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .instructor-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .instructor-links a {
+            color: var(--primary-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .instructor-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Philosophy */
+        .philosophy {
+            background: var(--gradient);
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .philosophy h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .philosophy blockquote {
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .philosophy .author {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .instructor {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .instructor-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">Stanford University - Fall 2025</div>
+            <h1>CS146S</h1>
+            <p class="subtitle">The Modern Software Developer</p>
+            <div class="hero-buttons">
+                <a href="course.html" class="btn btn-primary">
+                    📚 Vào học ngay
+                </a>
+                <a href="https://github.com/mihail911/modern-software-dev-assignments" target="_blank" class="btn btn-secondary">
+                    💻 Assignments
+                </a>
+            </div>
+        </section>
+
+        <!-- Course Description -->
+        <section class="course-info">
+            <h2>Giới thiệu khóa học</h2>
+            <p>
+                Trong khóa học này, sinh viên sẽ làm chủ cả lý thuyết đằng sau các thách thức kỹ thuật phần mềm truyền thống
+                và cách sử dụng hiệu quả các công cụ AI tiên tiến để giải quyết chúng. Sinh viên sẽ học các kỹ năng và
+                góc nhìn để phát triển trong kỷ nguyên phát triển phần mềm hiện đại được thúc đẩy bởi AI.
+            </p>
+            <p>
+                <strong>Bạn sẽ học:</strong> Xây dựng tính năng production với AI agents sử dụng quy trình
+                <em>research → plan → implement → test</em>, cấu hình môi trường phát triển AI-native cho tech stack cụ thể
+                (IDE, code review, tool integrations), và thiết lập quy trình review và CI để phát hiện lỗi AI,
+                hallucinations trước khi lên production.
+            </p>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-item-icon">📅</div>
+                    <div class="info-item-text">
+                        <h4>Thời lượng</h4>
+                        <p>10 tuần</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-icon">🎓</div>
+                    <div class="info-item-text">
+                        <h4>Đơn vị</h4>
+                        <p>Stanford University</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-icon">📖</div>
+                    <div class="info-item-text">
+                        <h4>Mã khóa học</h4>
+                        <p>CS146S</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-icon">🗓️</div>
+                    <div class="info-item-text">
+                        <h4>Học kỳ</h4>
+                        <p>Fall 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Learn -->
+        <h2 class="section-title">Bạn sẽ học được gì?</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3>LLM & Prompt Engineering</h3>
+                <p>Hiểu cách LLM hoạt động và làm chủ các kỹ thuật prompting hiệu quả: Chain-of-Thought, RAG, ReAct, và nhiều hơn nữa.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔧</div>
+                <h3>AI Development Tools</h3>
+                <p>Thành thạo các công cụ AI hiện đại: Cursor, Claude Code, Warp Terminal, và cách tích hợp chúng vào workflow.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔌</div>
+                <h3>Model Context Protocol</h3>
+                <p>Học MCP - tiêu chuẩn mới cho việc kết nối AI với tools và resources, xây dựng custom MCP servers.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛡️</div>
+                <h3>Security & Testing</h3>
+                <p>Bảo mật code AI-generated, phát hiện vulnerabilities, và xây dựng test suites với sự hỗ trợ của AI.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3>Code Review</h3>
+                <p>AI-assisted code review, khi nào tin tưởng AI và khi nào cần human oversight.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Production & DevOps</h3>
+                <p>Monitoring, observability, và automated incident response với AI agents trong production.</p>
+            </div>
+        </div>
+
+        <!-- Curriculum -->
+        <section class="curriculum">
+            <h2>Chương trình học</h2>
+            <table class="curriculum-table">
+                <thead>
+                    <tr>
+                        <th>Tuần</th>
+                        <th>Chủ đề</th>
+                        <th>Nội dung chính</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Week 1</td>
+                        <td>Introduction to Coding LLMs</td>
+                        <td>LLM fundamentals, prompt engineering</td>
+                    </tr>
+                    <tr>
+                        <td>Week 2</td>
+                        <td>Anatomy of Coding Agents</td>
+                        <td>Agent architecture, MCP, tool use</td>
+                    </tr>
+                    <tr>
+                        <td>Week 3</td>
+                        <td>The AI IDE</td>
+                        <td>Context management, PRDs, IDE integrations</td>
+                    </tr>
+                    <tr>
+                        <td>Week 4</td>
+                        <td>Coding Agent Patterns</td>
+                        <td>Agent autonomy, human-agent collaboration</td>
+                    </tr>
+                    <tr>
+                        <td>Week 5</td>
+                        <td>The Modern Terminal</td>
+                        <td>AI-enhanced CLI, terminal automation</td>
+                    </tr>
+                    <tr>
+                        <td>Week 6</td>
+                        <td>AI Testing & Security</td>
+                        <td>Secure coding, vulnerability detection</td>
+                    </tr>
+                    <tr>
+                        <td>Week 7</td>
+                        <td>Modern Software Support</td>
+                        <td>Debugging, diagnostics, documentation</td>
+                    </tr>
+                    <tr>
+                        <td>Week 8</td>
+                        <td>Automated UI & App Building</td>
+                        <td>AI UI prototyping, rapid iteration</td>
+                    </tr>
+                    <tr>
+                        <td>Week 9</td>
+                        <td>Agents Post-Deployment</td>
+                        <td>Monitoring, incident response, DevOps</td>
+                    </tr>
+                    <tr>
+                        <td>Week 10</td>
+                        <td>What's Next</td>
+                        <td>Future of AI software engineering</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Philosophy -->
+        <section class="philosophy">
+            <h2>Triết lý cốt lõi</h2>
+            <blockquote>
+                "Pure vibe coding vẫn chưa phải là cách khả thi để xây dựng phần mềm production.
+                Mỗi developer phải học cách trở thành quản lý của một đội ngũ AI agent intern háo hức."
+            </blockquote>
+            <p class="author">— Mihail Eric, Course Instructor</p>
+        </section>
+
+        <!-- Guest Speakers -->
+        <section class="speakers">
+            <h2>Khách mời đặc biệt</h2>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-avatar">👤</div>
+                    <h4>Russell Kaplan</h4>
+                    <p class="role">Co-founder</p>
+                    <p class="company">Cognition (Devin AI)</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">👤</div>
+                    <h4>Zach Lloyd</h4>
+                    <p class="role">CEO & Founder</p>
+                    <p class="company">Warp</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">👤</div>
+                    <h4>Boris Cherny</h4>
+                    <p class="role">Engineer</p>
+                    <p class="company">Anthropic (Claude Code)</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">👤</div>
+                    <h4>Isaac Evans</h4>
+                    <p class="role">CEO</p>
+                    <p class="company">Semgrep</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">👤</div>
+                    <h4>Tomas Reimers</h4>
+                    <p class="role">CPO</p>
+                    <p class="company">Graphite</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-avatar">👤</div>
+                    <h4>Martin Casado</h4>
+                    <p class="role">General Partner</p>
+                    <p class="company">a16z</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructor -->
+        <section class="instructor">
+            <div class="instructor-avatar">👨‍🏫</div>
+            <div class="instructor-info">
+                <h2>Mihail Eric</h2>
+                <p class="title">Course Instructor - Stanford University</p>
+                <p>
+                    Mihail Eric là giảng viên tại Stanford, nơi ông tạo ra và giảng dạy "The Modern Software Developer" -
+                    khóa học đầu tiên của trường về phát triển phần mềm AI.
+                </p>
+                <p>
+                    Trước đây, ông là technical lead tại Amazon Alexa, nơi ông xây dựng các LLM đầu tiên cho tổ chức.
+                    Ông cũng sáng lập một công ty AI coding được YC hậu thuẫn. Ông lấy bằng thạc sĩ về AI tại Stanford
+                    dưới sự hướng dẫn của Christopher Manning.
+                </p>
+                <div class="instructor-links">
+                    <a href="https://x.com/mihail_eric" target="_blank">🐦 Twitter</a>
+                    <a href="https://www.linkedin.com/in/mihaileric" target="_blank">💼 LinkedIn</a>
+                    <a href="https://maven.com/the-modern-software-developer/ai-course" target="_blank">📚 Maven Course</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                Tài liệu được dịch bởi Claude Code và biên soạn bởi <a href="https://www.facebook.com/m.duongvandinh" target="_blank">Dương Văn Định</a> | <a href="https://www.linkedin.com/in/duong-dinh-153375b7/" target="_blank">LinkedIn</a>
+            </p>
+            <p style="margin-top: 10px;">
+                <a href="https://themodernsoftware.dev/" target="_blank">Website gốc</a> |
+                <a href="https://github.com/mihail911/modern-software-dev-assignments" target="_blank">GitHub Assignments</a>
+            </p>
+            <div style="margin-top: 20px; padding: 15px; background: var(--bg-card); border-radius: 10px; display: inline-block;">
+                <p style="margin-bottom: 10px;">☕ Nếu tài liệu hữu ích, hãy mời mình một cốc cà phê nhé!</p>
+                <img src="qr.png" alt="QR Code Donate" style="width: 150px; height: 150px; border-radius: 8px;">
+            </div>
+            <p style="margin-top: 15px; font-size: 0.85rem;">
+                © 2025 Stanford University CS146S - The Modern Software Developer
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                icon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                icon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const icon = document.getElementById('theme-icon');
+
+            if (savedTheme === 'light') {
+                document.body.setAttribute('data-theme', 'light');
+                icon.textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>

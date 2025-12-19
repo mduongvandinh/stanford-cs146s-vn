@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS146S: Nhà Phát Triển Phần Mềm Hiện Đại - Stanford 2025</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Nội dung chi tiết khóa học CS146S Stanford - 10 tuần học về AI Development, LLM, MCP, AI Agents, Testing, Security và DevOps.">
+    <meta name="keywords" content="Stanford CS146S, AI Course, LLM Tutorial, Prompt Engineering, MCP Protocol, Claude Code, AI Development Vietnamese">
+    <meta name="author" content="Mihail Eric - Stanford University">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CS146S Course Content - Stanford AI Development">
+    <meta property="og:description" content="10 tuần học AI Software Development từ Stanford University - Bản tiếng Việt">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+
+    <style>
+        /* Dark Theme (Default) */
+        :root {
+            --bg-dark: #0F172A;
+            --bg-card: #1E293B;
+            --bg-card-hover: #334155;
+            --primary: #8B5CF6;
+            --primary-light: #A78BFA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #334155;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --gradient: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+            --code-bg: #0D1117;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-dark: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F1F5F9;
+            --primary: #7C3AED;
+            --primary-light: #8B5CF6;
+            --secondary: #0891B2;
+            --accent: #D97706;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --success: #059669;
+            --warning: #D97706;
+            --error: #DC2626;
+            --gradient: linear-gradient(135deg, #7C3AED 0%, #0891B2 100%);
+            --code-bg: #F1F5F9;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .nav-section {
+            margin-bottom: 25px;
+        }
+
+        .nav-section h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 15px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-card-hover);
+            color: var(--primary-light);
+        }
+
+        .nav-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-link .week-num {
+            font-weight: bold;
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 30px 40px;
+            max-width: 1200px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-meta-item svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-header h2 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+        }
+
+        .week-badge {
+            background: var(--gradient);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .guest-badge {
+            background: var(--accent);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* Section Titles */
+        .section-title {
+            color: var(--primary-light);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .inline-code {
+            background: var(--bg-card-hover);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-card-hover);
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        tr:hover td {
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+
+        .info-box.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--warning);
+        }
+
+        .info-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: var(--success);
+        }
+
+        .info-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        /* Diagram */
+        .diagram {
+            background: var(--bg-card-hover);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .footer a {
+            color: var(--primary-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+                padding-top: 70px;
+            }
+
+            .mobile-header {
+                display: flex !important;
+            }
+
+            .sidebar-overlay {
+                display: block;
+            }
+        }
+
+        /* Mobile Header & Hamburger Menu */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            padding: 0 20px;
+            z-index: 150;
+            gap: 15px;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-title {
+            font-size: 1rem;
+            font-weight: 600;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 99;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 100;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        /* Search Box */
+        .search-container {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px 15px;
+            background: var(--bg-card-hover);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .search-box::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-results {
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            display: block;
+            padding: 8px 12px;
+            background: var(--bg-card-hover);
+            border-radius: 6px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .search-result-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .no-results {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Progress Tracking */
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient);
+            z-index: 1000;
+            transition: width 0.1s;
+        }
+
+        .week-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .progress-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--success);
+        }
+
+        .completed-badge {
+            background: var(--success);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 10px;
+        }
+
+        .nav-link.completed {
+            border-left: 3px solid var(--success);
+        }
+
+        .nav-link.completed::after {
+            content: '✓';
+            margin-left: auto;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            z-index: 1000;
+            text-decoration: none;
+            border-radius: 0 0 8px 0;
+            font-weight: 600;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            transform: scale(1.1);
+        }
+
+        .theme-toggle:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover svg {
+            transform: rotate(15deg);
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        /* Focus Styles for Accessibility */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .theme-toggle {
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border: #64748B;
+            }
+
+            .card {
+                border-width: 2px;
+            }
+        }
+
+        /* Markdown Viewer Modal */
+        .md-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .md-modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .md-modal {
+            background: var(--bg-card);
+            width: 90%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .md-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-dark);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .md-modal-header h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .md-modal-header h3::before {
+            content: '📄';
+        }
+
+        .md-modal-close {
+            background: var(--bg-card-hover);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .md-modal-close:hover {
+            background: var(--error);
+            border-color: var(--error);
+            color: white;
+        }
+
+        .md-modal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            scroll-behavior: smooth;
+        }
+
+        /* Markdown Content Styling */
+        .md-modal-content h1 {
+            font-size: 1.8rem;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .md-modal-content h2 {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .md-modal-content h3 {
+            font-size: 1.15rem;
+            color: var(--accent);
+            margin: 25px 0 12px 0;
+        }
+
+        .md-modal-content h4, .md-modal-content h5, .md-modal-content h6 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin: 20px 0 10px 0;
+        }
+
+        .md-modal-content p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .md-modal-content ul, .md-modal-content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+            color: var(--text-secondary);
+        }
+
+        .md-modal-content li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        .md-modal-content pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px 20px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .md-modal-content code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: var(--accent);
+        }
+
+        .md-modal-content pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-primary);
+        }
+
+        .md-modal-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .md-modal-content th, .md-modal-content td {
+            border: 1px solid var(--border);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .md-modal-content th {
+            background: var(--bg-dark);
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .md-modal-content tr:nth-child(even) {
+            background: var(--bg-dark);
+        }
+
+        .md-modal-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            margin: 20px 0;
+            background: var(--bg-dark);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .md-modal-content hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 30px 0;
+        }
+
+        .md-modal-content a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .md-modal-content a:hover {
+            text-decoration: underline;
+        }
+
+        .md-modal-content strong {
+            color: var(--text-primary);
+        }
+
+        .md-modal-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        /* Loading spinner */
+        .md-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--text-secondary);
+        }
+
+        .md-loading::before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error state */
+        .md-error {
+            text-align: center;
+            padding: 40px;
+            color: var(--error);
+        }
+
+        .md-error::before {
+            content: '⚠️';
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* MD Link styling */
+        .md-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--secondary);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .md-link:hover {
+            color: var(--primary-light);
+        }
+
+        .md-link::after {
+            content: '📖';
+            font-size: 0.9em;
+        }
+
+        /* Modal responsive */
+        @media (max-width: 768px) {
+            .md-modal {
+                width: 95%;
+                height: 90vh;
+                margin: 20px;
+            }
+
+            .md-modal-content {
+                padding: 20px;
+            }
+
+            .md-modal-content h1 {
+                font-size: 1.4rem;
+            }
+
+            .md-modal-content h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator" id="progress-indicator"></div>
+
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <span class="mobile-title">CS146S - Stanford</span>
+    </header>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Chuyển đổi chế độ sáng/tối" title="Chuyển đổi theme">
+        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Quay lại đầu trang" title="Lên đầu trang">↑</button>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar" role="navigation" aria-label="Menu điều hướng chính">
+        <div class="sidebar-header">
+            <h1>CS146S</h1>
+            <p>Nhà Phát Triển Phần Mềm Hiện Đại</p>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-container">
+            <input type="text" class="search-box" id="search-box" placeholder="🔍 Tìm kiếm nội dung..." aria-label="Tìm kiếm">
+            <div class="search-results" id="search-results"></div>
+        </div>
+
+        <div class="nav-section" role="group" aria-labelledby="overview-heading">
+            <h3 id="overview-heading">Tổng quan</h3>
+            <a href="index.html" class="nav-link">🏠 Trang chủ</a>
+        </div>
+
+        <div class="nav-section" role="group" aria-labelledby="weeks-heading">
+            <h3 id="weeks-heading">Tuần Học</h3>
+            <a href="#week1" class="nav-link"><span class="week-num" aria-hidden="true">01</span> Giới thiệu LLMs</a>
+            <a href="#week2" class="nav-link"><span class="week-num" aria-hidden="true">02</span> Coding Agents</a>
+            <a href="#week3" class="nav-link"><span class="week-num" aria-hidden="true">03</span> AI IDE</a>
+            <a href="#week4" class="nav-link"><span class="week-num" aria-hidden="true">04</span> Agent Patterns</a>
+            <a href="#week5" class="nav-link"><span class="week-num" aria-hidden="true">05</span> Modern Terminal</a>
+            <a href="#week6" class="nav-link"><span class="week-num" aria-hidden="true">06</span> Testing & Security</a>
+            <a href="#week7" class="nav-link"><span class="week-num" aria-hidden="true">07</span> Software Support</a>
+            <a href="#week8" class="nav-link"><span class="week-num" aria-hidden="true">08</span> Automated UI</a>
+            <a href="#week9" class="nav-link"><span class="week-num" aria-hidden="true">09</span> Post-Deployment</a>
+            <a href="#week10" class="nav-link"><span class="week-num" aria-hidden="true">10</span> What's Next</a>
+        </div>
+
+        <div class="nav-section" role="group" aria-labelledby="resources-heading">
+            <h3 id="resources-heading">Tài Nguyên</h3>
+            <a href="https://themodernsoftware.dev/" target="_blank" rel="noopener noreferrer" class="nav-link">Website Khóa Học</a>
+            <a href="https://github.com/mihail911/modern-software-dev-assignments" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub Assignments</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content" role="main" tabindex="-1">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>CS146S: Nhà Phát Triển Phần Mềm Hiện Đại</h1>
+            <p>The Modern Software Developer - Stanford University, Fall 2025</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    Mihail Eric
+                </div>
+                <div class="hero-meta-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Thứ 2 & Thứ 6, 8:30 sáng
+                </div>
+                <div class="hero-meta-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    Stanford University
+                </div>
+            </div>
+        </section>
+
+        <!-- Week 1 -->
+        <section id="week1" class="card">
+            <div class="card-header">
+                <h2>Tuần 1: Giới thiệu Coding LLMs</h2>
+                <span class="week-badge">Tuần 1</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Course logistics</strong> - Giới thiệu và logistics khóa học</li>
+                <li><strong>What is an LLM actually</strong> - LLM thực sự là gì?</li>
+                <li><strong>How to prompt effectively</strong> - Cách prompt hiệu quả</li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week1/deep-dive-llms-explained.md', 'Deep Dive into LLMs'); return false;">Deep Dive into LLMs</a> - Hướng dẫn hiểu video của Andrej Karpathy (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week1/prompt-engineering-deep-dive.md', 'AI Prompt Engineering: A Deep Dive'); return false;">AI Prompt Engineering: A Deep Dive</a> - Tổng hợp buổi thảo luận từ Anthropic (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week1/prompt-engineering-google-cloud.md', 'Prompt Engineering Overview'); return false;">Prompt Engineering Overview</a> - Tổng quan Prompt Engineering cơ bản (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week1/prompting-techniques-guide.md', 'Các Kỹ Thuật Prompting Nâng Cao'); return false;">Prompting Techniques Guide</a> - Hướng dẫn chi tiết các kỹ thuật: CoT, RAG, ReAct, ToT... (tiếng Việt)</li>
+                <li><a href="https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf" target="_blank">How OpenAI Uses Codex</a> - OpenAI sử dụng Codex như thế nào</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/tree/master/week1" target="_blank">LLM Prompting Playground</a> - Thực hành prompting với LLM</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 22/9:</strong> Giới thiệu và cách LLM được tạo ra - <a href="https://docs.google.com/presentation/d/1zT2Ofy88cajLTLkd7TcuSM4BCELvF9qQdHmlz33i4t0/edit?usp=sharing" target="_blank">Slides</a></li>
+                <li><strong>Thứ 6, 26/9:</strong> Power prompting cho LLMs - <a href="https://docs.google.com/presentation/d/1MIhw8p6TLGdbQ9TcxhXSs5BaPf5d_h77QY70RHNfeGs/edit?usp=drive_link" target="_blank">Slides</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank">Deep Dive into LLMs</a> - Andrej Karpathy (YouTube)</li>
+                <li><a href="https://cloud.google.com/discover/what-is-prompt-engineering" target="_blank">Prompt Engineering Overview</a> - Google Cloud</li>
+                <li><a href="https://www.promptingguide.ai/techniques" target="_blank">Prompt Engineering Guide</a> - Prompting Techniques</li>
+                <li><a href="https://www.youtube.com/watch?v=T9aRN5JkmL8" target="_blank">AI Prompt Engineering: A Deep Dive</a> - Anthropic (YouTube)</li>
+                <li><a href="https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf" target="_blank">How OpenAI Uses Codex</a> - OpenAI (PDF)</li>
+            </ul>
+        </section>
+
+        <!-- Week 2 -->
+        <section id="week2" class="card">
+            <div class="card-header">
+                <h2>Tuần 2: Giải Phẫu của Coding Agents</h2>
+                <span class="week-badge">Tuần 2</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Agent architecture and components</strong> - Kiến trúc và thành phần của Agent</li>
+                <li><strong>Tool use and function calling</strong> - Sử dụng tools và function calling</li>
+                <li><strong>MCP (Model Context Protocol)</strong> - Giao thức Model Context</li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week2/mcp-introduction.md', 'MCP Introduction'); return false;">MCP Introduction</a> - Giới thiệu Model Context Protocol (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week2/mcp-server-implementations.md', 'Sample MCP Server Implementations'); return false;">Sample MCP Server Implementations</a> - Các MCP servers phổ biến (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week2/mcp-server-authentication.md', 'MCP Server Authentication'); return false;">MCP Server Authentication</a> - Bảo mật và xác thực MCP (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week2/mcp-server-sdk.md', 'MCP Server SDK'); return false;">MCP Server SDK</a> - Xây dựng MCP Server với TypeScript (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week2/mcp-registry.md', 'MCP Registry'); return false;">MCP Registry</a> - Khám phá và đăng ký MCP Servers (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week2/mcp-food-for-thought.md', 'MCP Food-for-Thought'); return false;">MCP Food-for-Thought</a> - APIs không làm MCP Tools tốt (tiếng Việt)</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/tree/master/week2" target="_blank">First Steps in the AI IDE</a> - Bước đầu với AI IDE</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 29/9:</strong> Xây dựng Coding Agent từ đầu - <a href="https://docs.google.com/presentation/d/11CP26VhsjnZOmi9YFgLlonzdib9BLyAlgc4cEvC5Fps/edit?usp=sharing" target="_blank">Slides</a>, <a href="https://drive.google.com/file/d/1YtpKFVG13DHyQ2i3HOtwyVJOV90nWeL2/view?usp=drive_link" target="_blank">Completed Exercise</a></li>
+                <li><strong>Thứ 6, 3/10:</strong> Building a custom MCP server - <a href="https://docs.google.com/presentation/d/1zSC2ra77XOUrJeyS85houg1DU7z9hq5Y4ebagTch-5o/edit?usp=drive_link" target="_blank">Slides</a>, <a href="https://drive.google.com/file/d/1J6lgZWcxPzpCpjujJSnW1aAkCYF6Yxv3/view?usp=drive_link" target="_blank">Completed Exercise</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://stytch.com/blog/model-context-protocol-introduction/" target="_blank">MCP Introduction</a> - Stytch Blog</li>
+                <li><a href="https://github.com/modelcontextprotocol/servers" target="_blank">Sample MCP Server Implementations</a> - GitHub</li>
+                <li><a href="https://developers.cloudflare.com/agents/guides/remote-mcp-server/#add-authentication" target="_blank">MCP Server Authentication</a> - Cloudflare Docs</li>
+                <li><a href="https://github.com/modelcontextprotocol/typescript-sdk/tree/main?tab=readme-ov-file#server" target="_blank">MCP Server SDK</a> - TypeScript SDK</li>
+                <li><a href="https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/" target="_blank">MCP Registry</a> - MCP Blog</li>
+                <li><a href="https://www.reillywood.com/blog/apis-dont-make-good-mcp-tools/" target="_blank">MCP Food-for-Thought</a> - APIs Don't Make Good MCP Tools</li>
+                <li><a href="https://www.anthropic.com/research/building-effective-agents" target="_blank">Building Effective Agents</a> - Anthropic</li>
+                <li><a href="https://modelcontextprotocol.io/" target="_blank">Model Context Protocol</a> - Tài liệu chính thức</li>
+                <li><a href="https://arxiv.org/abs/2210.03629" target="_blank">ReAct Paper</a> - Reasoning + Acting</li>
+                <li><a href="https://github.com/jlowin/fastmcp" target="_blank">FastMCP</a> - Python framework cho MCP servers</li>
+            </ul>
+        </section>
+
+        <!-- Week 3 -->
+        <section id="week3" class="card">
+            <div class="card-header">
+                <h2>Tuần 3: The AI IDE</h2>
+                <span class="week-badge">Tuần 3</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Context management and code understanding</strong> - Quản lý context và hiểu code</li>
+                <li><strong>PRDs for agents</strong> - Viết PRD cho agents</li>
+                <li><strong>IDE integrations and extensions</strong> - Tích hợp và extensions cho IDE</li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week3/specs-are-new-source-code.md', 'Specs Are the New Source Code'); return false;">Specs Are the New Source Code</a> - Specifications là mã nguồn mới (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week3/how-long-contexts-fail.md', 'How Long Contexts Fail'); return false;">How Long Contexts Fail</a> - Tại sao context dài thất bại (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week3/devin-coding-agents-101.md', 'Devin: Coding Agents 101'); return false;">Devin: Coding Agents 101</a> - Hướng dẫn Coding Agents (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week3/ai-complex-codebases.md', 'Getting AI to Work In Complex Codebases'); return false;">Getting AI to Work In Complex Codebases</a> - AI trong codebase phức tạp (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week3/faang-vibe-codes.md', 'How FAANG Vibe Codes'); return false;">How FAANG Vibe Codes</a> - Cách FAANG dùng AI coding (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week3/writing-effective-tools-for-agents.md', 'Writing Effective Tools for Agents'); return false;">Writing Effective Tools for Agents</a> - Viết tools hiệu quả cho agents (tiếng Việt)</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/blob/master/week3/assignment.md" target="_blank">Build a Custom MCP Server</a> - Xây dựng MCP Server tùy chỉnh</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 6/10:</strong> From first prompt to optimal IDE setup - <a href="https://docs.google.com/presentation/d/11pQNCde_mmRnImBat0Zymnp8TCS_cT_1up7zbcj6Sjg/edit?usp=sharing" target="_blank">Slides</a>, <a href="https://drive.google.com/file/d/1MZ0Qx68Vzw4x5x_XcV8XiPLp7fFDe1LJ/view?usp=drive_link" target="_blank">Design Doc Template</a></li>
+                <li><strong>Thứ 6, 10/10:</strong> Silas Alberti, Head of Research Cognition - <a href="https://docs.google.com/presentation/d/1i0pRttHf72lgz8C-n7DSegcLBgncYZe_ppU7dB9zhUA/edit?usp=sharing" target="_blank">Slides</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://blog.ravi-mehta.com/p/specs-are-the-new-source-code" target="_blank">Specs Are the New Source Code</a> - Ravi Mehta</li>
+                <li><a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html" target="_blank">How Long Contexts Fail</a> - Drew Breunig</li>
+                <li><a href="https://devin.ai/agents101#introduction" target="_blank">Devin: Coding Agents 101</a> - Cognition</li>
+                <li><a href="https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md" target="_blank">Getting AI to Work In Complex Codebases</a> - HumanLayer</li>
+                <li><a href="https://x.com/rohanpaul_ai/status/1959414096589422619" target="_blank">How FAANG Vibe Codes</a> - Twitter Thread</li>
+                <li><a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank">Writing Effective Tools for Agents</a> - Anthropic</li>
+            </ul>
+        </section>
+
+        <!-- Week 4 -->
+        <section id="week4" class="card">
+            <div class="card-header">
+                <h2>Tuần 4: Coding Agent Patterns</h2>
+                <span class="week-badge">Tuần 4</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Managing agent autonomy levels</strong> - Quản lý mức độ tự chủ của agent</li>
+                <li><strong>Human-agent collaboration patterns</strong> - Các mẫu cộng tác giữa người và agent</li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week4/how-anthropic-uses-claude-code.md', 'How Anthropic Uses Claude Code'); return false;">How Anthropic Uses Claude Code</a> - Cách Anthropic dùng Claude Code nội bộ (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week4/claude-code-best-practices.md', 'Claude Code Best Practices'); return false;">Claude Code Best Practices</a> - Best practices từ Anthropic (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week4/awesome-claude-agents.md', 'Awesome Claude Agents'); return false;">Awesome Claude Agents</a> - 24 specialized agents (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week4/super-claude-framework.md', 'Super Claude Framework'); return false;">Super Claude Framework</a> - Meta-programming framework (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week4/good-context-good-code.md', 'Good Context Good Code'); return false;">Good Context Good Code</a> - AI-Native Development Culture (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week4/peeking-under-hood-claude-code.md', 'Peeking Under the Hood of Claude Code'); return false;">Peeking Under the Hood of Claude Code</a> - Kiến trúc Claude Code (tiếng Việt)</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/blob/master/week4/assignment.md" target="_blank">Coding with Claude Code</a> - Thực hành với Claude Code</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 13/10:</strong> How to be an Agent Manager - <a href="https://docs.google.com/presentation/d/19mgkwAnJDc7JuJy0zhhoY0ZC15DiNpxL8kchPDnRkRQ/edit?usp=sharing" target="_blank">Slides</a></li>
+                <li><strong>Thứ 6, 17/10:</strong> Boris Cherny, Creator of Claude Code - <a href="https://docs.google.com/presentation/d/1bv7Zozn6z45CAh-IyX99dMPMyXCHC7zj95UfwErBYQ8/edit?usp=sharing" target="_blank">Slides</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf" target="_blank">How Anthropic Uses Claude Code</a> - PDF gốc</li>
+                <li><a href="https://www.anthropic.com/engineering/claude-code-best-practices" target="_blank">Claude Code Best Practices</a> - Anthropic</li>
+                <li><a href="https://github.com/vijaythecoder/awesome-claude-agents" target="_blank">Awesome Claude Agents</a> - GitHub</li>
+                <li><a href="https://github.com/SuperClaude-Org/SuperClaude_Framework" target="_blank">Super Claude Framework</a> - GitHub</li>
+                <li><a href="https://blog.stockapp.com/good-context-good-code/" target="_blank">Good Context Good Code</a> - StockApp Blog</li>
+                <li><a href="https://medium.com/@outsightai/peeking-under-the-hood-of-claude-code-70f5a94a9a62" target="_blank">Peeking Under the Hood of Claude Code</a> - Medium</li>
+            </ul>
+        </section>
+
+        <!-- Week 5 -->
+        <section id="week5" class="card">
+            <div class="card-header">
+                <h2>Tuần 5: The Modern Terminal</h2>
+                <span class="week-badge">Tuần 5</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>AI-enhanced command line interfaces</strong> - Giao diện dòng lệnh được tăng cường bởi AI</li>
+                <li><strong>Terminal automation and scripting</strong> - Tự động hóa terminal và scripting</li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week5/warp-university.md', 'Warp University'); return false;">Warp University</a> - Học sử dụng Warp Terminal (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week5/warp-vs-claude-code.md', 'Warp vs Claude Code'); return false;">Warp vs Claude Code</a> - So sánh hai AI terminal tools (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week5/how-warp-uses-warp.md', 'How Warp Uses Warp to Build Warp'); return false;">How Warp Uses Warp to Build Warp</a> - Dogfooding tại Warp (tiếng Việt)</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/blob/master/week5/assignment.md" target="_blank">Agentic Development with Warp</a> - Phát triển với Warp agents</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 20/10:</strong> How to Build a Breakout AI Developer Product - <a href="https://docs.google.com/presentation/d/1Djd4eBLBbRkma8rFnJAWMT0ptct_UGB8hipmoqFVkxQ/edit?usp=sharing" target="_blank">Slides</a></li>
+                <li><strong>Thứ 6, 24/10:</strong> Zach Lloyd, CEO Warp - <a href="https://www.figma.com/slides/kwbcmtqTFQMfUhiMH8BiEx/Warp---Stanford--Copy-?node-id=9-116&t=oBWBCk8mjg2l2NR5-1" target="_blank">Slides (Figma)</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://www.warp.dev/university?slug=university" target="_blank">Warp University</a> - Khóa học chính thức</li>
+                <li><a href="https://www.warp.dev/university/getting-started/warp-vs-claude-code" target="_blank">Warp vs Claude Code</a> - So sánh chính thức</li>
+                <li><a href="https://notion.warp.dev/How-Warp-uses-Warp-to-build-Warp-21643263616d81a6b9e3e63fd8a7380c" target="_blank">How Warp Uses Warp to Build Warp</a> - Notion</li>
+                <li><a href="https://www.warp.dev/" target="_blank">Warp Terminal</a> - The terminal for the 21st century</li>
+            </ul>
+        </section>
+
+        <!-- Week 6 -->
+        <section id="week6" class="card">
+            <div class="card-header">
+                <h2>Tuần 6: AI Testing và Security</h2>
+                <span class="week-badge">Tuần 6</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Secure vibe coding</strong> - Lập trình an toàn với AI</li>
+                <li><strong>History of vulnerability detection</strong> - Lịch sử phát hiện lỗ hổng bảo mật</li>
+                <li><strong>AI-generated test suites</strong> - Bộ test được tạo bởi AI</li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week6/sast-vs-dast.md', 'SAST vs DAST'); return false;">SAST vs DAST</a> - So sánh hai phương pháp kiểm thử bảo mật (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week6/copilot-rce-prompt-injection.md', 'Copilot RCE via Prompt Injection'); return false;">Copilot Remote Code Execution via Prompt Injection</a> - CVE-2025-53773 (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week6/finding-vulnerabilities-claude-codex.md', 'Finding Vulnerabilities with AI'); return false;">Finding Vulnerabilities in Modern Web Apps Using Claude Code and OpenAI Codex</a> - Semgrep Research (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week6/agentic-ai-threats.md', 'Agentic AI Threats'); return false;">Agentic AI Threats: Identity Spoofing and Impersonation Risks</a> - Unit 42 Research (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week6/owasp-top-ten.md', 'OWASP Top Ten'); return false;">OWASP Top Ten: The Leading Web Application Security Risks</a> - 10 rủi ro hàng đầu (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week6/context-rot.md', 'Context Rot'); return false;">Context Rot: Understanding Degradation in AI Context Windows</a> - Chroma Research (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week6/vulnerability-prompt-o3.md', 'Vulnerability Prompt Analysis with O3'); return false;">Vulnerability Prompt Analysis with O3</a> - AI Vulnerability Detection (tiếng Việt)</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/blob/master/week6/assignment.md" target="_blank">Writing Secure AI Code</a> - Viết code an toàn với AI</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 27/10:</strong> AI QA, SAST, DAST, and Beyond - <a href="https://docs.google.com/presentation/d/1C05bCLasMDigBbkwdWbiz4WrXibzi6ua4hQQbTod_8c/edit?usp=sharing" target="_blank">Slides</a></li>
+                <li><strong>Thứ 6, 31/10:</strong> Bảo mật trong kỷ nguyên AI (Isaac Evans - CEO Semgrep)</li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://www.splunk.com/en_us/blog/learn/sast-vs-dast.html" target="_blank">SAST vs DAST</a> - Splunk</li>
+                <li><a href="https://embracethered.com/blog/posts/2025/github-copilot-remote-code-execution-via-prompt-injection/" target="_blank">Copilot Remote Code Execution via Prompt Injection</a> - Embrace The Red</li>
+                <li><a href="https://semgrep.dev/blog/2025/finding-vulnerabilities-in-modern-web-apps-using-claude-code-and-openai-codex/" target="_blank">Finding Vulnerabilities in Modern Web Apps Using Claude Code and OpenAI Codex</a> - Semgrep</li>
+                <li><a href="https://unit42.paloaltonetworks.com/agentic-ai-threats/" target="_blank">Agentic AI Threats: Identity Spoofing and Impersonation Risks</a> - Unit 42</li>
+                <li><a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top Ten: The Leading Web Application Security Risks</a> - Official</li>
+                <li><a href="https://research.trychroma.com/context-rot" target="_blank">Context Rot: Understanding Degradation in AI Context Windows</a> - Chroma Research</li>
+                <li><a href="https://github.com/SeanHeelan/o3_finds_cve-2025-37899/blob/master/system_prompt_uafs.prompt" target="_blank">Vulnerability Prompt Analysis with O3</a> - GitHub</li>
+            </ul>
+        </section>
+
+        <!-- Week 7 -->
+        <section id="week7" class="card">
+            <div class="card-header">
+                <h2>Tuần 7: Modern Software Support</h2>
+                <span class="week-badge">Tuần 7</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>What AI code systems can we trust</strong> - Hệ thống AI code nào đáng tin cậy</li>
+                <li><strong>Debugging and diagnostics</strong> - Gỡ lỗi và chẩn đoán</li>
+                <li><strong>Intelligent documentation generation</strong> - Tạo tài liệu thông minh</li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week7/code-reviews-just-do-it.md', 'Code Reviews: Just Do It'); return false;">Code Reviews: Just Do It</a> - Tại sao code review quan trọng (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week7/how-to-review-code-effectively.md', 'How to Review Code Effectively'); return false;">How to Review Code Effectively</a> - GitHub Staff Engineer philosophy (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week7/ai-assisted-code-review.md', 'AI-Assisted Assessment of Coding Practices'); return false;">AI-Assisted Assessment of Coding Practices in Modern Code Review</a> - Google AutoCommenter (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week7/ai-code-review-best-practices.md', 'AI Code Review Best Practices'); return false;">AI Code Review Implementation Best Practices</a> - Hướng dẫn triển khai (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week7/code-review-essentials.md', 'Code Review Essentials'); return false;">Code Review Essentials for Software Teams</a> - Nguyên tắc cơ bản (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week7/lessons-millions-ai-code-reviews.md', 'Lessons from millions of AI code reviews'); return false;">Lessons from millions of AI code reviews</a> - Bài học từ Graphite (tiếng Việt)</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/blob/master/week7/assignment.md" target="_blank">Code Review Reps</a> - Thực hành code review</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 3/11:</strong> AI Code Review - <a href="https://docs.google.com/presentation/d/1NkPzpuSQt6Esbnr2-EnxM9007TL6ebSPFwITyVY-QxU/edit?usp=sharing" target="_blank">Slides</a></li>
+                <li><strong>Thứ 6, 7/11:</strong> Tomas Reimers, CPO Graphite - <a href="https://drive.google.com/file/d/1hwF-RIkOJ_OFy17BKhzFyCtxSS7Pcf7p/view?usp=drive_link" target="_blank">Slides</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://blog.codinghorror.com/code-reviews-just-do-it/" target="_blank">Code Reviews: Just Do It</a> - Coding Horror</li>
+                <li><a href="https://github.blog/developer-skills/github/how-to-review-code-effectively-a-github-staff-engineers-philosophy/" target="_blank">How to Review Code Effectively</a> - GitHub Blog</li>
+                <li><a href="https://arxiv.org/pdf/2405.13565" target="_blank">AI-Assisted Assessment of Coding Practices in Modern Code Review</a> - arXiv (PDF)</li>
+                <li><a href="https://graphite.dev/guides/ai-code-review-implementation-best-practices" target="_blank">AI Code Review Implementation Best Practices</a> - Graphite</li>
+                <li><a href="https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html" target="_blank">Code Review Essentials for Software Teams</a> - Blake Smith</li>
+                <li><a href="https://www.youtube.com/watch?v=TswQeKftnaw" target="_blank">Lessons from millions of AI code reviews</a> - YouTube (Graphite)</li>
+            </ul>
+        </section>
+
+        <!-- Week 8 -->
+        <section id="week8" class="card">
+            <div class="card-header">
+                <h2>Tuần 8: Automated UI và App Building</h2>
+                <span class="week-badge">Tuần 8</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Design and frontend for everyone</strong> - Thiết kế và frontend cho mọi người</li>
+                <li><strong>Rapid UI/UX prototyping and iteration</strong> - Tạo mẫu UI/UX nhanh và lặp lại</li>
+            </ul>
+
+            <div class="section-title">Bài tập</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/tree/master/week8" target="_blank">Multi-stack Web App Builds</a> - Xây dựng ứng dụng web đa nền tảng</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 10/11:</strong> End-to-end apps with a single prompt - <a href="https://docs.google.com/presentation/d/1GrVLsfMFIXMiGjIW9D7EJIyLYh_-3ReHHNd_vRfZUoo/edit?usp=sharing" target="_blank">Slides</a></li>
+                <li><strong>Thứ 6, 14/11:</strong> Gaspar Garcia, Head of AI Research Vercel - <a href="https://docs.google.com/presentation/d/1Jf2aN5zIChd5tT86rZWWqY-iDWbxgR-uynKJxBR7E9E/edit?usp=sharing" target="_blank">Slides</a></li>
+            </ul>
+        </section>
+
+        <!-- Week 9 -->
+        <section id="week9" class="card">
+            <div class="card-header">
+                <h2>Tuần 9: Agents Post-Deployment</h2>
+                <span class="week-badge">Tuần 9</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Monitoring and observability for AI systems</strong> - Giám sát và quan sát cho hệ thống AI</li>
+                <li><strong>Automated incident response</strong> - Phản hồi sự cố tự động</li>
+                <li><strong>Triaging and debugging</strong> - Phân loại và gỡ lỗi</li>
+            </ul>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 17/11:</strong> Incident response and DevOps - <a href="https://docs.google.com/presentation/d/1Mfe-auWAsg9URCujneKnHr0AbO8O-_U4QXBVOlO4qp0/edit?usp=sharing" target="_blank">Slides</a></li>
+                <li><strong>Thứ 6, 21/11:</strong> Mayank Agarwal, CTO Resolve & Milind Ganjoo, Technical Staff Resolve - <a href="https://drive.google.com/file/d/11WnEbMGc9kny_WBpMN10I8oP8XsiQOnM/view?usp=sharing" target="_blank">Slides</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu đọc</div>
+            <ul>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week9/introduction-to-sre.md', 'Introduction to SRE'); return false;">Introduction to Site Reliability Engineering</a> - Google SRE Book: Error Budget, SLIs/SLOs (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week9/observability-basics.md', 'Observability Basics'); return false;">Observability Basics You Should Know</a> - Traces, Spans, Three Pillars (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week9/kubernetes-troubleshooting-ai.md', 'K8s Troubleshooting'); return false;">Kubernetes Troubleshooting with AI</a> - AI để debug K8s hiệu quả (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week9/autonomous-teammate.md', 'Autonomous Teammate'); return false;">Your New Autonomous Teammate</a> - AI Production Engineer (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week9/multi-agent-systems-ai-native.md', 'Multi-Agent Systems'); return false;">Role of Multi-Agent Systems in AI-Native Engineering</a> - Hệ thống đa tác tử (tiếng Việt)</li>
+                <li><a href="#" class="md-link" onclick="openMarkdown('week9/agentic-ai-on-call-benefits.md', 'Agentic AI Benefits'); return false;">Benefits of Agentic AI in On-Call Engineering</a> - 5 lợi ích chính (tiếng Việt)</li>
+            </ul>
+
+            <div class="section-title">Assignment</div>
+            <ul>
+                <li><a href="https://github.com/mihail911/modern-software-dev-assignments/tree/master/week9" target="_blank">Week 9: Testing and Evaluating LLM Features</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://sre.google/sre-book/introduction/" target="_blank">Google SRE Book - Introduction</a></li>
+                <li><a href="https://last9.io/blog/traces-spans-observability-basics/" target="_blank">Observability Basics - Last9</a></li>
+                <li><a href="https://resolve.ai/blog/kubernetes-troubleshooting-in-resolve-ai" target="_blank">Kubernetes Troubleshooting - Resolve AI</a></li>
+                <li><a href="https://resolve.ai/blog/product-deep-dive" target="_blank">AI Production Engineer Deep Dive - Resolve AI</a></li>
+                <li><a href="https://resolve.ai/blog/role-of-multi-agent-systems-AI-native-engineering" target="_blank">Multi-Agent Systems - Resolve AI</a></li>
+                <li><a href="https://resolve.ai/blog/Top-5-Benefits" target="_blank">Top 5 Benefits of Agentic AI - Resolve AI</a></li>
+                <li><a href="https://opentelemetry.io/" target="_blank">OpenTelemetry - Industry Standard</a></li>
+            </ul>
+        </section>
+
+        <!-- Week 10: What's Next for AI Software Engineering -->
+        <section class="card" id="week10">
+            <div class="card-header">
+                <h2>Week 10: What's Next for AI Software Engineering</h2>
+                <span class="week-badge">Tuần 10</span>
+            </div>
+
+            <div class="section-title">Chủ đề</div>
+            <ul>
+                <li><strong>Future of Software Development Roles</strong> - Vai trò developer trong tương lai</li>
+                <li><strong>Emerging AI Coding Paradigms</strong> - Các mô hình lập trình AI mới</li>
+                <li><strong>Industry Trends and Predictions</strong> - Xu hướng và dự đoán ngành</li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>Câu hỏi trọng tâm:</strong> Phát triển phần mềm sẽ như thế nào trong 10 năm tới? AI sẽ thay đổi vai trò của developer ra sao?</p>
+            </div>
+
+            <div class="section-title">Bài giảng</div>
+            <ul>
+                <li><strong>Thứ 2, 01/12:</strong> Software Development in 10 Years - Tương lai phát triển phần mềm</li>
+                <li><strong>Thứ 6, 05/12:</strong> Guest Lecture: <a href="https://a16z.com/author/martin-casado/" target="_blank">Martin Casado</a>, General Partner tại <a href="https://a16z.com/" target="_blank">a16z</a></li>
+            </ul>
+
+            <div class="section-title">Tài liệu tham khảo thêm</div>
+            <ul>
+                <li><a href="https://a16z.com/author/martin-casado/" target="_blank">Martin Casado - a16z Profile</a></li>
+                <li><a href="https://a16z.com/" target="_blank">Andreessen Horowitz (a16z)</a></li>
+            </ul>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section class="card">
+            <div class="card-header">
+                <h2>Tổng Kết & Những Điểm Chính</h2>
+                <span class="week-badge">Tóm tắt</span>
+            </div>
+
+            <div class="info-box success">
+                <p><strong>Triết lý cốt lõi:</strong> "Pure vibe coding vẫn chưa phải là cách khả thi để xây dựng phần mềm production. Mỗi developer phải học cách trở thành quản lý của một đội ngũ AI agent intern háo hức."</p>
+            </div>
+
+            <div class="section-title">7 Bài Học Quan Trọng</div>
+            <ol>
+                <li><strong>Human-Agent Engineering > Vibe Coding</strong> - Trở thành manager của AI agents</li>
+                <li><strong>Prompting là kỹ năng then chốt</strong> - Thành thạo các kỹ thuật: CoT, RAG, Reflexion</li>
+                <li><strong>Sync vs Async Tools</strong> - Biết khi nào dùng tool nào</li>
+                <li><strong>MCP là Tương lai</strong> - Tiêu chuẩn cho tích hợp AI-tool</li>
+                <li><strong>Bảo mật không thể bỏ qua</strong> - Code AI cần review kỹ hơn</li>
+                <li><strong>Code Review vẫn cần con người</strong> - AI hỗ trợ, không thay thế</li>
+                <li><strong>Build cho model 6 tháng sau</strong> - Sẵn sàng phát triển với công nghệ</li>
+            </ol>
+
+            <div class="section-title">Lộ trình Developer 2025</div>
+            <div class="diagram">
+┌─────────────────────────────────────────────────────────────────┐
+│                KỸ NĂNG DEVELOPER HIỆN ĐẠI                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   Kỹ năng truyền thống        Kỹ năng tăng cường AI             │
+│   ──────────────────          ─────────────────────             │
+│   • DSA & System Design       • Prompt Engineering              │
+│   • Clean Code                • Quản lý Agent                   │
+│   • Testing                   • Chọn công cụ AI                 │
+│   • Debugging                 • Curation Context                │
+│   • Code Review               • Cộng tác Human-AI               │
+│                                                                 │
+│                    ┌─────────────────────┐                      │
+│                    │  DEVELOPER HIỆN ĐẠI │                      │
+│                    │  = Truyền thống +   │                      │
+│                    │    Kỹ năng AI       │                      │
+│                    └─────────────────────┘                      │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+            <p>CS146S: The Modern Software Developer - Stanford University, Fall 2025</p>
+            <p>Giảng viên: <a href="https://www.mihaileric.com/" target="_blank" rel="noopener noreferrer">Mihail Eric</a></p>
+            <p>Tài liệu được dịch bởi Claude Code và biên soạn bởi <a href="https://www.facebook.com/m.duongvandinh" target="_blank">Dương Văn Định</a> | <a href="https://www.linkedin.com/in/duong-dinh-153375b7/" target="_blank">LinkedIn</a></p>
+            <div style="margin-top: 20px; padding: 15px; background: var(--bg-card); border-radius: 10px; display: inline-block;">
+                <p style="margin-bottom: 10px;">☕ Nếu tài liệu hữu ích, hãy mời mình một cốc cà phê nhé!</p>
+                <img src="qr.png" alt="QR Code Donate" style="width: 150px; height: 150px; border-radius: 8px;">
+            </div>
+        </footer>
+    </main>
+
+    <!-- JavaScript for Theme Toggle and Mobile Menu -->
+    <script>
+        // Theme Toggle Functionality
+        (function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            // Check for saved theme preference or system preference
+            function getPreferredTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    return savedTheme;
+                }
+                return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+
+            // Apply theme
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    html.setAttribute('data-theme', 'light');
+                } else {
+                    html.removeAttribute('data-theme');
+                }
+                localStorage.setItem('theme', theme);
+
+                // Update aria-label
+                const label = theme === 'light'
+                    ? 'Chuyển sang chế độ tối'
+                    : 'Chuyển sang chế độ sáng';
+                themeToggle.setAttribute('aria-label', label);
+            }
+
+            // Initialize theme
+            setTheme(getPreferredTheme());
+
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                setTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+
+            // Listen for system theme changes
+            window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+                if (!localStorage.getItem('theme')) {
+                    setTheme(e.matches ? 'light' : 'dark');
+                }
+            });
+        })();
+
+        // Mobile Menu Toggle (Hamburger)
+        (function() {
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            function openMenu() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+                hamburger.classList.add('active');
+                hamburger.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', function() {
+                if (sidebar.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            // Close menu when clicking overlay
+            overlay.addEventListener('click', closeMenu);
+
+            // Close menu when pressing Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                    closeMenu();
+                    hamburger.focus();
+                }
+            });
+
+            // Close menu when clicking nav links (mobile)
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        closeMenu();
+                    }
+                });
+            });
+        })();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Set focus for accessibility
+                    target.setAttribute('tabindex', '-1');
+                    target.focus();
+
+                    // Close mobile menu if open
+                    const sidebar = document.getElementById('sidebar');
+                    const overlay = document.getElementById('sidebar-overlay');
+                    const hamburger = document.getElementById('hamburger');
+                    if (sidebar.classList.contains('active')) {
+                        sidebar.classList.remove('active');
+                        overlay.classList.remove('active');
+                        hamburger.classList.remove('active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+
+        // Active navigation link highlighting
+        (function() {
+            const sections = document.querySelectorAll('section[id^="week"]');
+            const navLinks = document.querySelectorAll('.nav-link[href^="#week"]');
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(function(section) {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink();
+        })();
+
+        // Back to Top Button
+        (function() {
+            const backToTop = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        })();
+
+        // Reading Progress Indicator
+        (function() {
+            const progressBar = document.getElementById('progress-indicator');
+
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                progressBar.style.width = Math.min(progress, 100) + '%';
+            });
+        })();
+
+        // Search Functionality
+        (function() {
+            const searchBox = document.getElementById('search-box');
+            const searchResults = document.getElementById('search-results');
+            const cards = document.querySelectorAll('.card');
+
+            // Build search index
+            const searchIndex = [];
+            cards.forEach(function(card) {
+                const id = card.id;
+                const header = card.querySelector('.card-header h2');
+                const title = header ? header.textContent : '';
+                const content = card.textContent.toLowerCase();
+                searchIndex.push({ id, title, content, element: card });
+            });
+
+            searchBox.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+
+                if (query.length < 2) {
+                    searchResults.innerHTML = '';
+                    searchResults.classList.remove('active');
+                    // Show all cards
+                    cards.forEach(function(card) {
+                        card.style.display = '';
+                    });
+                    return;
+                }
+
+                const matches = searchIndex.filter(function(item) {
+                    return item.content.includes(query);
+                });
+
+                if (matches.length > 0) {
+                    searchResults.innerHTML = matches.map(function(item) {
+                        return '<a href="#' + item.id + '" class="search-result-item">' + item.title + '</a>';
+                    }).join('');
+                    searchResults.classList.add('active');
+
+                    // Add click handlers
+                    searchResults.querySelectorAll('a').forEach(function(link) {
+                        link.addEventListener('click', function() {
+                            searchResults.classList.remove('active');
+                            searchBox.value = '';
+                        });
+                    });
+                } else {
+                    searchResults.innerHTML = '<div class="search-result-item" style="color: var(--text-secondary);">Không tìm thấy kết quả</div>';
+                    searchResults.classList.add('active');
+                }
+            });
+
+            // Close search results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchBox.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.remove('active');
+                }
+            });
+        })();
+
+        // Progress Tracking (mark weeks as completed)
+        (function() {
+            const STORAGE_KEY = 'cs146s-progress';
+            const navLinks = document.querySelectorAll('.nav-link[href^="#week"]');
+
+            // Load saved progress
+            function getProgress() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+                } catch (e) {
+                    return {};
+                }
+            }
+
+            // Save progress
+            function saveProgress(progress) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+            }
+
+            // Update UI to show completed weeks
+            function updateUI() {
+                const progress = getProgress();
+                navLinks.forEach(function(link) {
+                    const weekId = link.getAttribute('href').replace('#', '');
+                    if (progress[weekId]) {
+                        link.classList.add('completed');
+                    } else {
+                        link.classList.remove('completed');
+                    }
+                });
+            }
+
+            // Add completion checkboxes to each week card
+            document.querySelectorAll('.card[id^="week"]').forEach(function(card) {
+                const weekId = card.id;
+                const header = card.querySelector('.card-header');
+                const progress = getProgress();
+
+                // Create checkbox
+                const checkbox = document.createElement('label');
+                checkbox.className = 'week-complete-checkbox';
+                checkbox.innerHTML = '<input type="checkbox" ' + (progress[weekId] ? 'checked' : '') + '> <span>Đã hoàn thành</span>';
+                checkbox.style.cssText = 'display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); cursor: pointer; margin-left: auto;';
+
+                const input = checkbox.querySelector('input');
+                input.style.cssText = 'cursor: pointer; width: 16px; height: 16px; accent-color: var(--primary);';
+
+                input.addEventListener('change', function() {
+                    const progress = getProgress();
+                    if (this.checked) {
+                        progress[weekId] = true;
+                    } else {
+                        delete progress[weekId];
+                    }
+                    saveProgress(progress);
+                    updateUI();
+                });
+
+                header.style.display = 'flex';
+                header.style.alignItems = 'center';
+                header.style.flexWrap = 'wrap';
+                header.style.gap = '10px';
+                header.appendChild(checkbox);
+            });
+
+            // Initialize UI
+            updateUI();
+        })();
+    </script>
+
+    <!-- Markdown Viewer Modal -->
+    <div id="mdModal" class="md-modal-overlay" onclick="if(event.target === this) closeMarkdown()">
+        <div class="md-modal">
+            <div class="md-modal-header">
+                <h3 id="mdModalTitle">Đang tải...</h3>
+                <button class="md-modal-close" onclick="closeMarkdown()" title="Đóng (Esc)">✕</button>
+            </div>
+            <div id="mdModalContent" class="md-modal-content">
+                <div class="md-loading">Đang tải nội dung...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Markdown Viewer Script -->
+    <script>
+        // Configure marked options
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof marked !== 'undefined') {
+                marked.setOptions({
+                    breaks: true,
+                    gfm: true,
+                    headerIds: true,
+                    mangle: false
+                });
+            }
+        });
+
+        // Open markdown file in modal
+        function openMarkdown(filePath, title) {
+            const modal = document.getElementById('mdModal');
+            const modalTitle = document.getElementById('mdModalTitle');
+            const modalContent = document.getElementById('mdModalContent');
+
+            // Show modal with loading state
+            modal.classList.add('active');
+            modalTitle.textContent = title || 'Đang tải...';
+            modalContent.innerHTML = '<div class="md-loading">Đang tải nội dung...</div>';
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            // Fetch markdown file
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Không thể tải file');
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // Parse markdown to HTML
+                    if (typeof marked !== 'undefined') {
+                        modalContent.innerHTML = marked.parse(markdown);
+                    } else {
+                        // Fallback: basic markdown rendering
+                        modalContent.innerHTML = basicMarkdownParse(markdown);
+                    }
+
+                    // Scroll to top
+                    modalContent.scrollTop = 0;
+                })
+                .catch(error => {
+                    modalContent.innerHTML = `
+                        <div class="md-error">
+                            <strong>Không thể tải nội dung</strong>
+                            <p style="margin-top: 10px; color: var(--text-secondary);">
+                                File: ${filePath}<br>
+                                Lỗi: ${error.message}
+                            </p>
+                            <p style="margin-top: 15px;">
+                                <a href="${filePath}" target="_blank" style="color: var(--secondary);">
+                                    Mở file trong tab mới →
+                                </a>
+                            </p>
+                        </div>
+                    `;
+                });
+        }
+
+        // Close markdown modal
+        function closeMarkdown() {
+            const modal = document.getElementById('mdModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMarkdown();
+            }
+        });
+
+        // Basic markdown parser fallback
+        function basicMarkdownParse(md) {
+            let html = md
+                // Headers
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                // Bold
+                .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+                // Italic
+                .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                // Code blocks
+                .replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>')
+                // Inline code
+                .replace(/`(.*?)`/gim, '<code>$1</code>')
+                // Links
+                .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank">$1</a>')
+                // Lists
+                .replace(/^\- (.*$)/gim, '<li>$1</li>')
+                .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                // Blockquotes
+                .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
+                // Horizontal rules
+                .replace(/^---$/gim, '<hr>')
+                // Line breaks
+                .replace(/\n/gim, '<br>');
+
+            // Wrap lists
+            html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
+
+            return html;
+        }
+    </script>
+</body>
+</html>
