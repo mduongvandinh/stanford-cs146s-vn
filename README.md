@@ -4,7 +4,7 @@ Tài liệu tiếng Việt cho khóa học **CS146S: The Modern Software Develop
 
 ## Truy cập Website
 
-**Live Website:** [https://your-username.github.io/stanford-cs146s-vn/](https://your-username.github.io/stanford-cs146s-vn/)
+**Live Website:** [[https://your-username.github.io/stanford-cs146s-vn/](https://mduongvandinh.github.io/stanford-cs146s-vn/index.html)])
 
 ## Giới thiệu
 
