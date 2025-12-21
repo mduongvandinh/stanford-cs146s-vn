@@ -523,6 +523,71 @@
             opacity: 0.8;
         }
 
+        /* Techniques Section */
+        .techniques {
+            padding: 60px 20px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .techniques h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .technique-card {
+            background: var(--bg-dark);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .technique-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .technique-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .technique-card h4 {
+            color: var(--primary-light);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .technique-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .technique-card code {
+            display: block;
+            background: var(--bg-card);
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            border-left: 3px solid var(--primary);
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -817,6 +882,64 @@
                     <a href="https://www.linkedin.com/in/mihaileric" target="_blank">💼 LinkedIn</a>
                     <a href="https://maven.com/the-modern-software-developer/ai-course" target="_blank">📚 Maven Course</a>
                 </div>
+            </div>
+        </section>
+
+        <!-- Techniques Section -->
+        <section class="techniques">
+            <h2>Kỹ Thuật Biên Soạn Với AI</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                Chia sẻ các kỹ thuật sử dụng AI để Việt hóa và biên soạn khóa học này
+            </p>
+
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <div class="technique-icon">🎭</div>
+                    <h4>Expert Panel Simulation</h4>
+                    <p>Mô phỏng cuộc thảo luận giữa 5 chuyên gia (UX, Tech, Education, Product, Accessibility) để có góc nhìn đa chiều về mỗi chủ đề.</p>
+                    <code>Hãy mô phỏng cuộc thảo luận giữa 5 chuyên gia về...</code>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-icon">🌐</div>
+                    <h4>Translation + Explanation</h4>
+                    <p>Không chỉ dịch, mà còn giải thích context. Giữ thuật ngữ tiếng Anh, thêm giải thích trong ngoặc.</p>
+                    <code>"Prompt Engineering (kỹ thuật viết câu lệnh cho AI)"</code>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-icon">🎯</div>
+                    <h4>Learning Objectives</h4>
+                    <p>Viết mục tiêu học tập theo chuẩn giáo dục với format "Sau tuần này, bạn sẽ biết..." và động từ hành động cụ thể.</p>
+                    <code>Hiểu, Nắm vững, Biết cách, Có thể áp dụng...</code>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-icon">🔗</div>
+                    <h4>Prompt Chain</h4>
+                    <p>Chia task lớn thành chuỗi prompt nhỏ: Phân tích → Dịch → Review → Thêm giá trị (ví dụ VN, links).</p>
+                    <code>Bước 1 → Bước 2 → Bước 3 → Bước 4</code>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-icon">📖</div>
+                    <h4>Structured TOC</h4>
+                    <p>Tạo mục lục với anchor links có thể click, giữ tiếng Việt có dấu trong slug để navigation dễ dàng.</p>
+                    <code>[Tên mục](#1-tên-mục-slug)</code>
+                </div>
+
+                <div class="technique-card">
+                    <div class="technique-icon">📝</div>
+                    <h4>Video Summary</h4>
+                    <p>Tóm tắt video dài thành notes có cấu trúc: Thông tin → Nội dung chính → Takeaways → Keywords.</p>
+                    <code>📌 Thông tin → 📖 Nội dung → 💡 Takeaways</code>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="TECHNIQUES.md" target="_blank" style="color: var(--primary-light); text-decoration: none; font-weight: 500;">
+                    📄 Xem chi tiết đầy đủ trong TECHNIQUES.md →
+                </a>
             </div>
         </section>
 
