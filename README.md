@@ -39,6 +39,44 @@ Khóa học này hướng dẫn sinh viên làm chủ cả lý thuyết đằng 
 
 ---
 
+## 📚 Phương Pháp Học Tập Đa Dạng
+
+> Sử dụng các công cụ AI để tạo trải nghiệm học tập phong phú
+
+### Công cụ hỗ trợ
+
+| Công cụ | Mục đích | Link |
+|---------|----------|------|
+| **NotebookLM** | Tạo podcast, summary, FAQ từ tài liệu | [notebooklm.google.com](https://notebooklm.google.com) |
+| **DeepWiki** | Biến repo GitHub thành wiki tương tác | [deepwiki.com](https://deepwiki.com) |
+
+### Các hình thức học tập
+
+- [ ] 🎧 **Audio Podcast** - Nghe tóm tắt bài học khi di chuyển (NotebookLM Audio Overview)
+- [ ] 🎬 **Video Tổng hợp** - Xem video summary ngắn gọn cho mỗi tuần
+- [ ] 📊 **Slide Deck** - Xem nội dung theo format slide presentation
+- [ ] 🗺️ **Mindmap** - Sơ đồ tư duy trực quan cho từng chủ đề
+- [ ] 💬 **Interactive Q&A** - Chat với tài liệu qua NotebookLM
+- [ ] 📖 **DeepWiki** - Khám phá codebase qua wiki tự động
+
+### Hướng dẫn sử dụng NotebookLM
+
+1. Truy cập [notebooklm.google.com](https://notebooklm.google.com)
+2. Tạo notebook mới, upload các file markdown từ repo này
+3. Sử dụng các tính năng:
+   - **Audio Overview**: Tạo podcast 2 người thảo luận về nội dung
+   - **Study Guide**: Tạo câu hỏi ôn tập
+   - **Timeline**: Xem lịch sử và tiến trình
+   - **Chat**: Hỏi đáp trực tiếp với tài liệu
+
+### Hướng dẫn sử dụng DeepWiki
+
+1. Truy cập [deepwiki.com](https://deepwiki.com)
+2. Nhập URL repo: `https://github.com/mduongvandinh/stanford-cs146s-vn`
+3. DeepWiki sẽ tự động phân tích và tạo wiki tương tác
+
+---
+
 ## Kỹ Thuật Biên Soạn Với AI
 
 > Chia sẻ các kỹ thuật sử dụng AI để Việt hóa và biên soạn khóa học này
@@ -132,6 +170,24 @@ Chia task lớn thành nhiều bước:
 2. **Bước 2:** Dịch từng phần với context
 3. **Bước 3:** Review tính nhất quán thuật ngữ
 4. **Bước 4:** Thêm giá trị (ví dụ VN, links, câu hỏi ôn tập)
+
+### 7. Video Transcript Processing
+
+Quy trình xử lý video bài giảng:
+
+1. **Tải transcript**: Dùng YouTube CC, youtubetranscript.com, hoặc Whisper AI
+2. **Cung cấp context**: Đưa link video + transcript cho Claude
+3. **Biên soạn**: Claude tạo file .md với timestamps, quotes, và bảng thuật ngữ
+
+```
+Đây là transcript từ video "[TÊN]":
+- Link gốc: [URL]
+- Tác giả: [TÊN]
+
+[PASTE TRANSCRIPT]
+
+Hãy biên soạn thành markdown với timestamps và trích dẫn hay.
+```
 
 ### Tips Tổng Hợp
 

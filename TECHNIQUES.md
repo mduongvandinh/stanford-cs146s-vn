@@ -278,6 +278,83 @@ Kết luận: Khi nào dùng [A], khi nào dùng [B]?
 
 ---
 
+## 11. Xử Lý Nội Dung Video (Video Transcript Processing)
+
+### Quy trình biên soạn từ video bài giảng
+
+Khi nguồn tài liệu là video (YouTube, Vimeo...), cần thực hiện quy trình sau:
+
+**Bước 1: Tải transcript từ video**
+
+Sử dụng các công cụ:
+- **YouTube**: Bật CC → Download transcript hoặc dùng [youtubetranscript.com](https://youtubetranscript.com)
+- **Whisper AI**: Cho video không có sẵn transcript
+- **Browser extensions**: YouTube Transcript, Glasp...
+
+**Bước 2: Cung cấp context cho AI**
+
+```
+Đây là transcript từ video "[TÊN VIDEO]":
+- Link gốc: [URL VIDEO]
+- Tác giả: [TÊN]
+- Thời lượng: [X phút]
+
+[PASTE TRANSCRIPT]
+
+Hãy biên soạn thành tài liệu markdown với:
+1. Cấu trúc rõ ràng theo các phần trong video
+2. Thêm timestamps quan trọng
+3. Trích dẫn các câu nói hay
+4. Tạo bảng thuật ngữ cuối bài
+5. Thêm links tham khảo nếu được đề cập
+```
+
+**Bước 3: Format output**
+
+```markdown
+# 🎬 [Tên Video]
+
+## 📌 Thông tin
+- **Nguồn**: [Link video](URL)
+- **Tác giả**: [Tên]
+- **Thời lượng**: X phút
+
+## 📖 Nội dung
+
+### 1. [Phần 1] (0:00 - 5:30)
+...
+
+### 2. [Phần 2] (5:30 - 12:00)
+...
+
+## 💬 Trích dẫn hay
+> "Quote đáng nhớ từ video..."
+
+## 🔗 Tài liệu tham khảo
+- [Link 1](url1)
+- [Link 2](url2)
+```
+
+### Ví dụ thực tế
+
+Với video "AI Prompt Engineering: A Deep Dive" của Anthropic:
+
+1. Tải transcript từ YouTube
+2. Đưa link + transcript cho Claude Code
+3. Claude biên soạn thành file `week1/prompt-engineering-deep-dive.md`
+4. Embed video YouTube vào trang course.html
+
+### Công cụ hỗ trợ
+
+| Công cụ | Mục đích | Link |
+|---------|----------|------|
+| YouTube Transcript | Tải transcript miễn phí | youtubetranscript.com |
+| Whisper | Transcribe video không có CC | openai.com/whisper |
+| Glasp | Browser extension | glasp.co |
+| Tactiq | Chrome extension | tactiq.io |
+
+---
+
 ## Tips Tổng Hợp
 
 ### Do's ✓
@@ -295,6 +372,69 @@ Kết luận: Khi nào dùng [A], khi nào dùng [B]?
 
 ---
 
+## 12. Phương Pháp Học Tập Đa Dạng với AI
+
+### Sử dụng NotebookLM để tạo trải nghiệm học tập phong phú
+
+[NotebookLM](https://notebooklm.google.com) của Google cho phép tạo nhiều dạng nội dung học tập từ tài liệu:
+
+**Các tính năng chính:**
+
+| Tính năng | Mô tả | Cách sử dụng |
+|-----------|-------|--------------|
+| 🎧 **Audio Overview** | Tạo podcast 2 người thảo luận | Upload markdown → Generate Audio |
+| 📊 **Briefing Doc** | Tạo slide deck tóm tắt | Upload → Generate Briefing |
+| 💬 **Interactive Chat** | Hỏi đáp với tài liệu | Chat trực tiếp trong notebook |
+| 📝 **Study Guide** | Tạo câu hỏi ôn tập | Generate Study Guide |
+| ⏱️ **Timeline** | Xem tiến trình nội dung | View Timeline |
+
+**Quy trình:**
+
+1. Truy cập [notebooklm.google.com](https://notebooklm.google.com)
+2. Tạo notebook mới
+3. Upload các file markdown từ repo (week1/*.md, week2/*.md,...)
+4. Chọn tính năng muốn tạo (Audio, Briefing, Study Guide)
+5. Download hoặc share kết quả
+
+### Sử dụng DeepWiki để tạo wiki tự động
+
+[DeepWiki](https://deepwiki.com) biến GitHub repo thành wiki tương tác:
+
+```
+1. Truy cập deepwiki.com
+2. Nhập: https://github.com/mduongvandinh/stanford-cs146s-vn
+3. DeepWiki tự động:
+   - Phân tích cấu trúc repo
+   - Tạo navigation tree
+   - Render markdown thành HTML đẹp
+   - Cho phép search toàn bộ nội dung
+```
+
+### Tạo Mindmap từ nội dung
+
+Sử dụng prompt để tạo mindmap:
+
+```
+Tạo mindmap cho chủ đề [X] với format:
+
+# [Chủ đề chính]
+## Nhánh 1
+  - Ý 1.1
+  - Ý 1.2
+## Nhánh 2
+  - Ý 2.1
+  - Ý 2.2
+
+Sau đó convert sang Mermaid hoặc Markmap format.
+```
+
+**Công cụ tạo mindmap:**
+- [Markmap](https://markmap.js.org/) - Từ markdown sang mindmap
+- [Mermaid](https://mermaid.js.org/) - Diagram từ text
+- [Excalidraw](https://excalidraw.com/) - Vẽ diagram tay
+
+---
+
 ## Công Cụ Hỗ Trợ
 
 1. **Claude Code** - Viết và chỉnh sửa code/markdown
@@ -302,6 +442,9 @@ Kết luận: Khi nào dùng [A], khi nào dùng [B]?
 3. **GitHub Pages** - Host static website miễn phí
 4. **Figma** - Thiết kế UI mockups
 5. **Mermaid** - Tạo diagrams từ text
+6. **NotebookLM** - Tạo podcast, study guide, Q&A
+7. **DeepWiki** - Biến repo thành wiki tương tác
+8. **Markmap** - Tạo mindmap từ markdown
 
 ---
 
