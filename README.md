@@ -4,7 +4,7 @@ Tài liệu tiếng Việt cho khóa học **CS146S: The Modern Software Develop
 
 ## Truy cập Website
 
-**Live Website:** [[https://mduongvandinh.github.io/stanford-cs146s-vn/](https://mduongvandinh.github.io/stanford-cs146s-vn/index.html)])
+**Live Website:** [https://your-username.github.io/stanford-cs146s-vn/](https://your-username.github.io/stanford-cs146s-vn/)
 
 ## Giới thiệu
 
@@ -43,7 +43,7 @@ Khóa học này hướng dẫn sinh viên làm chủ cả lý thuyết đằng 
 
 ## Đóng góp
 
-Tài liệu được dịch bởi Claude Code và biên soạn bởi **Dương Văn Định**.
+Tài liệu được dịch bởi **Claude Code (Opus 4.5)** và biên soạn bởi **Dương Văn Định**.
 
 - Facebook: [Dương Văn Định](https://www.facebook.com/m.duongvandinh)
 - LinkedIn: [Dương Văn Định](https://www.linkedin.com/in/duong-dinh-153375b7/)
