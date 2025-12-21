@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuật ngữ AI - CS146S Stanford</title>
+    <meta name="description" content="Bảng thuật ngữ AI và phát triển phần mềm hiện đại - CS146S Stanford">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+    <style>
+        :root {
+            --bg-dark: #0F172A;
+            --bg-card: #1E293B;
+            --bg-card-hover: #334155;
+            --primary: #8B5CF6;
+            --primary-light: #A78BFA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #334155;
+            --success: #10B981;
+            --gradient: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+        }
+
+        [data-theme="light"] {
+            --bg-dark: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F1F5F9;
+            --primary: #7C3AED;
+            --primary-light: #8B5CF6;
+            --secondary: #0891B2;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--bg-card-hover);
+            color: var(--primary-light);
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            display: block;
+            padding: 15px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .category {
+            margin-bottom: 40px;
+        }
+
+        .category h2 {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .term {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+
+        .term:hover {
+            border-color: var(--primary);
+        }
+
+        .term h3 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .term h3 .english {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+
+        .term p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .term .example {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: var(--bg-card-hover);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .term .example::before {
+            content: 'Ví dụ: ';
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        @media print {
+            body { background: white; color: black; }
+            .theme-toggle, .search-box { display: none; }
+            .term { break-inside: avoid; border: 1px solid #ccc; }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .container { padding: 20px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle" title="Chuyển đổi theme">🌙</button>
+
+    <div class="container">
+        <a href="course.html" class="back-link">← Quay lại khóa học</a>
+
+        <div class="header">
+            <h1>Thuật ngữ AI & Phát triển Phần mềm</h1>
+            <p>Bảng giải thích các thuật ngữ quan trọng trong khóa học CS146S</p>
+        </div>
+
+        <input type="text" class="search-box" id="searchBox" placeholder="🔍 Tìm kiếm thuật ngữ...">
+
+        <!-- LLM & AI Fundamentals -->
+        <section class="category" id="llm">
+            <h2>LLM & AI Cơ bản</h2>
+
+            <div class="term">
+                <h3>LLM <span class="english">(Large Language Model)</span></h3>
+                <p>Mô hình ngôn ngữ lớn - AI được huấn luyện trên lượng text khổng lồ để hiểu và sinh văn bản. Các LLM phổ biến: GPT-4, Claude, Gemini.</p>
+            </div>
+
+            <div class="term">
+                <h3>Token</h3>
+                <p>Đơn vị nhỏ nhất mà LLM xử lý, có thể là một từ, một phần từ, hoặc ký tự đặc biệt. Trung bình 1 token ≈ 4 ký tự tiếng Anh.</p>
+                <div class="example">"Hello world" = 2 tokens, "Xin chào" = 3-4 tokens</div>
+            </div>
+
+            <div class="term">
+                <h3>Context Window</h3>
+                <p>Lượng tokens tối đa mà LLM có thể xử lý trong một lần. Claude có context window ~200K tokens, GPT-4 Turbo ~128K tokens.</p>
+            </div>
+
+            <div class="term">
+                <h3>Hallucination</h3>
+                <p>Hiện tượng LLM tạo ra thông tin sai nhưng nghe có vẻ đúng và tự tin. Đây là một trong những giới hạn quan trọng cần lưu ý khi sử dụng AI.</p>
+            </div>
+
+            <div class="term">
+                <h3>Temperature</h3>
+                <p>Tham số điều chỉnh độ "sáng tạo" của LLM. Temperature = 0 cho output nhất quán, temperature cao (0.7-1.0) cho output đa dạng hơn.</p>
+            </div>
+
+            <div class="term">
+                <h3>Fine-tuning</h3>
+                <p>Quá trình huấn luyện thêm một LLM đã có sẵn trên dữ liệu cụ thể để cải thiện hiệu suất cho task nhất định.</p>
+            </div>
+
+            <div class="term">
+                <h3>RLHF <span class="english">(Reinforcement Learning from Human Feedback)</span></h3>
+                <p>Kỹ thuật huấn luyện LLM bằng phản hồi từ con người, giúp model trả lời an toàn và hữu ích hơn.</p>
+            </div>
+        </section>
+
+        <!-- Prompt Engineering -->
+        <section class="category" id="prompting">
+            <h2>Prompt Engineering</h2>
+
+            <div class="term">
+                <h3>Prompt</h3>
+                <p>Câu lệnh hoặc hướng dẫn gửi đến LLM để yêu cầu thực hiện task. Chất lượng prompt quyết định chất lượng output.</p>
+            </div>
+
+            <div class="term">
+                <h3>Zero-shot Prompting</h3>
+                <p>Kỹ thuật yêu cầu LLM thực hiện task mà không cung cấp ví dụ mẫu.</p>
+                <div class="example">"Dịch câu sau sang tiếng Việt: Hello world"</div>
+            </div>
+
+            <div class="term">
+                <h3>Few-shot Prompting</h3>
+                <p>Cung cấp một số ví dụ mẫu trong prompt để LLM hiểu pattern cần theo.</p>
+            </div>
+
+            <div class="term">
+                <h3>Chain-of-Thought (CoT)</h3>
+                <p>Kỹ thuật yêu cầu LLM "suy nghĩ từng bước" trước khi đưa ra kết quả, giúp cải thiện độ chính xác cho các task phức tạp.</p>
+                <div class="example">"Hãy giải bài toán này từng bước..."</div>
+            </div>
+
+            <div class="term">
+                <h3>RAG <span class="english">(Retrieval Augmented Generation)</span></h3>
+                <p>Kỹ thuật kết hợp tìm kiếm thông tin từ nguồn bên ngoài với LLM để sinh câu trả lời chính xác và cập nhật hơn.</p>
+            </div>
+
+            <div class="term">
+                <h3>ReAct <span class="english">(Reasoning + Acting)</span></h3>
+                <p>Mô hình kết hợp suy luận và hành động, cho phép LLM tương tác với công cụ bên ngoài để giải quyết vấn đề.</p>
+            </div>
+
+            <div class="term">
+                <h3>Tree of Thoughts (ToT)</h3>
+                <p>Kỹ thuật cho phép LLM khám phá nhiều đường suy luận song song và chọn đường tốt nhất.</p>
+            </div>
+        </section>
+
+        <!-- AI Agents -->
+        <section class="category" id="agents">
+            <h2>AI Agents & Tools</h2>
+
+            <div class="term">
+                <h3>AI Agent</h3>
+                <p>Hệ thống AI có khả năng tự động thực hiện chuỗi hành động để hoàn thành mục tiêu, có thể sử dụng tools và ra quyết định.</p>
+            </div>
+
+            <div class="term">
+                <h3>MCP <span class="english">(Model Context Protocol)</span></h3>
+                <p>Giao thức tiêu chuẩn của Anthropic cho việc kết nối AI với tools và resources bên ngoài. Cho phép AI truy cập files, databases, APIs một cách an toàn.</p>
+            </div>
+
+            <div class="term">
+                <h3>Function Calling / Tool Use</h3>
+                <p>Khả năng của LLM gọi các functions/tools được định nghĩa sẵn để thực hiện các tác vụ cụ thể như search, code execution, API calls.</p>
+            </div>
+
+            <div class="term">
+                <h3>Claude Code</h3>
+                <p>Công cụ AI coding của Anthropic, hoạt động trong terminal để hỗ trợ viết code, debug, và quản lý codebase.</p>
+            </div>
+
+            <div class="term">
+                <h3>Cursor</h3>
+                <p>AI IDE dựa trên VS Code, tích hợp AI trực tiếp vào môi trường phát triển với các tính năng như chat, autocomplete, và code generation.</p>
+            </div>
+
+            <div class="term">
+                <h3>Devin</h3>
+                <p>AI software engineer của Cognition, có khả năng tự động thực hiện các task phát triển phần mềm phức tạp.</p>
+            </div>
+
+            <div class="term">
+                <h3>Agentic Workflow</h3>
+                <p>Quy trình làm việc mà AI agent chủ động thực hiện nhiều bước, ra quyết định và tương tác với môi trường để hoàn thành task.</p>
+            </div>
+
+            <div class="term">
+                <h3>Human-in-the-Loop</h3>
+                <p>Mô hình AI với sự giám sát của con người trong các bước quan trọng, đảm bảo độ chính xác và an toàn.</p>
+            </div>
+        </section>
+
+        <!-- Development Practices -->
+        <section class="category" id="practices">
+            <h2>Phát triển Phần mềm</h2>
+
+            <div class="term">
+                <h3>PRD <span class="english">(Product Requirements Document)</span></h3>
+                <p>Tài liệu mô tả chi tiết yêu cầu sản phẩm. Trong AI development, PRD giúp AI hiểu rõ context và mục tiêu của task.</p>
+            </div>
+
+            <div class="term">
+                <h3>Context Engineering</h3>
+                <p>Nghệ thuật chuẩn bị và cung cấp context phù hợp cho AI để đạt kết quả tốt nhất. Bao gồm việc chọn files, documentation, và examples phù hợp.</p>
+            </div>
+
+            <div class="term">
+                <h3>Vibe Coding</h3>
+                <p>Phong cách lập trình "feel good" với AI mà không cần review kỹ. Không được khuyến khích cho production code.</p>
+            </div>
+
+            <div class="term">
+                <h3>Code Review</h3>
+                <p>Quy trình kiểm tra code bởi đồng nghiệp hoặc AI trước khi merge. Quan trọng đặc biệt với AI-generated code.</p>
+            </div>
+
+            <div class="term">
+                <h3>SAST <span class="english">(Static Application Security Testing)</span></h3>
+                <p>Phương pháp kiểm tra bảo mật bằng cách phân tích source code mà không cần chạy ứng dụng.</p>
+            </div>
+
+            <div class="term">
+                <h3>DAST <span class="english">(Dynamic Application Security Testing)</span></h3>
+                <p>Phương pháp kiểm tra bảo mật bằng cách tấn công ứng dụng đang chạy để tìm lỗ hổng.</p>
+            </div>
+        </section>
+
+        <!-- Security -->
+        <section class="category" id="security">
+            <h2>Bảo mật AI</h2>
+
+            <div class="term">
+                <h3>Prompt Injection</h3>
+                <p>Kỹ thuật tấn công bằng cách đưa prompts độc hại vào input để thay đổi hành vi của AI system.</p>
+                <div class="example">Đưa "Ignore previous instructions..." vào input</div>
+            </div>
+
+            <div class="term">
+                <h3>OWASP Top 10</h3>
+                <p>Danh sách 10 rủi ro bảo mật web phổ biến nhất, bao gồm Injection, Broken Authentication, XSS, v.v.</p>
+            </div>
+
+            <div class="term">
+                <h3>Context Rot</h3>
+                <p>Hiện tượng chất lượng output của LLM giảm dần khi context window bị đầy với thông tin không liên quan.</p>
+            </div>
+
+            <div class="term">
+                <h3>Sandbox</h3>
+                <p>Môi trường cô lập để chạy code không tin cậy một cách an toàn, ngăn chặn truy cập hệ thống.</p>
+            </div>
+        </section>
+
+        <!-- DevOps & SRE -->
+        <section class="category" id="devops">
+            <h2>DevOps & SRE</h2>
+
+            <div class="term">
+                <h3>SRE <span class="english">(Site Reliability Engineering)</span></h3>
+                <p>Phương pháp của Google áp dụng software engineering vào operations để đảm bảo hệ thống reliable và scalable.</p>
+            </div>
+
+            <div class="term">
+                <h3>SLI/SLO/SLA</h3>
+                <p>SLI (Service Level Indicator): Metrics đo lường. SLO (Objective): Mục tiêu. SLA (Agreement): Cam kết với khách hàng.</p>
+            </div>
+
+            <div class="term">
+                <h3>Error Budget</h3>
+                <p>Ngân sách lỗi cho phép - phần trăm downtime hoặc errors được chấp nhận trong khoảng thời gian.</p>
+            </div>
+
+            <div class="term">
+                <h3>Observability</h3>
+                <p>Khả năng hiểu trạng thái bên trong hệ thống thông qua logs, metrics, và traces. Ba trụ cột quan trọng cho monitoring.</p>
+            </div>
+
+            <div class="term">
+                <h3>Incident Response</h3>
+                <p>Quy trình xử lý sự cố khi hệ thống gặp vấn đề. AI có thể hỗ trợ tự động phát hiện và giải quyết incidents.</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>CS146S: The Modern Software Developer - Stanford University</p>
+            <p><a href="course.html">Quay lại khóa học</a> | <a href="index.html">Trang chủ</a></p>
+            <p class="last-updated" style="margin-top: 10px; font-size: 0.85rem;">Cập nhật lần cuối: 21/12/2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', function() {
+            if (document.body.getAttribute('data-theme') === 'light') {
+                document.body.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Search Functionality
+        const searchBox = document.getElementById('searchBox');
+        const terms = document.querySelectorAll('.term');
+
+        searchBox.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+
+            terms.forEach(function(term) {
+                const text = term.textContent.toLowerCase();
+                if (query === '' || text.includes(query)) {
+                    term.style.display = '';
+                } else {
+                    term.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

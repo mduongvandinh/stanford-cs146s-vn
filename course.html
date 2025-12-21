@@ -1075,6 +1075,276 @@
             font-size: 0.9em;
         }
 
+        /* Reading Time Badge */
+        .reading-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-card-hover);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-left: 10px;
+        }
+
+        .reading-time::before {
+            content: '⏱️';
+        }
+
+        /* Learning Objectives Box */
+        .learning-objectives {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .learning-objectives h4 {
+            color: var(--primary-light);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .learning-objectives h4::before {
+            content: '🎯';
+        }
+
+        .learning-objectives ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .learning-objectives li {
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        /* Prerequisites Box */
+        .prerequisites {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        .prerequisites strong {
+            color: var(--accent);
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .breadcrumb-separator {
+            color: var(--border);
+        }
+
+        .breadcrumb-current {
+            color: var(--primary-light);
+            font-weight: 500;
+        }
+
+        /* Font Size Controls */
+        .font-size-controls {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 100;
+        }
+
+        .font-size-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        .font-size-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+        }
+
+        .font-size-btn:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Font Size Variations */
+        body.font-size-large {
+            font-size: 18px;
+        }
+
+        body.font-size-large .md-modal-content {
+            font-size: 1.1rem;
+        }
+
+        body.font-size-xlarge {
+            font-size: 20px;
+        }
+
+        body.font-size-xlarge .md-modal-content {
+            font-size: 1.2rem;
+        }
+
+        /* Last Updated Badge */
+        .last-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            background: var(--bg-card-hover);
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .last-updated::before {
+            content: '📅';
+        }
+
+        /* Video Embed Container */
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 15px 0;
+            background: var(--bg-dark);
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* Enhanced Focus Indicators */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        .nav-link:focus-visible,
+        .md-link:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .card:focus-within {
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Print Stylesheet */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+            }
+
+            .sidebar,
+            .theme-toggle,
+            .back-to-top,
+            .font-size-controls,
+            .mobile-header,
+            .progress-indicator,
+            .search-container,
+            .week-complete-checkbox,
+            .md-modal-overlay {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 20px !important;
+                max-width: 100% !important;
+            }
+
+            .card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                margin-bottom: 20px;
+            }
+
+            .hero {
+                background: #f0f0f0 !important;
+                color: black !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            a {
+                color: #0066cc !important;
+                text-decoration: underline !important;
+            }
+
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                color: #666;
+            }
+
+            .learning-objectives {
+                background: #f5f5f5 !important;
+                border: 2px solid #8B5CF6 !important;
+            }
+
+            .video-embed {
+                display: none;
+            }
+
+            .video-embed + .video-link-print {
+                display: block !important;
+            }
+        }
+
+        .video-link-print {
+            display: none;
+        }
+
         /* Modal responsive */
         @media (max-width: 768px) {
             .md-modal {
@@ -1130,6 +1400,13 @@
     <!-- Back to Top Button -->
     <button class="back-to-top" id="back-to-top" aria-label="Quay lại đầu trang" title="Lên đầu trang">↑</button>
 
+    <!-- Font Size Controls -->
+    <div class="font-size-controls" role="group" aria-label="Điều chỉnh cỡ chữ">
+        <button class="font-size-btn" id="font-increase" aria-label="Tăng cỡ chữ" title="Tăng cỡ chữ">A+</button>
+        <button class="font-size-btn" id="font-decrease" aria-label="Giảm cỡ chữ" title="Giảm cỡ chữ">A-</button>
+        <button class="font-size-btn" id="font-reset" aria-label="Đặt lại cỡ chữ" title="Đặt lại cỡ chữ">A</button>
+    </div>
+
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="sidebar" role="navigation" aria-label="Menu điều hướng chính">
         <div class="sidebar-header">
@@ -1164,6 +1441,7 @@
 
         <div class="nav-section" role="group" aria-labelledby="resources-heading">
             <h3 id="resources-heading">Tài Nguyên</h3>
+            <a href="glossary.html" class="nav-link">📖 Thuật ngữ AI</a>
             <a href="https://themodernsoftware.dev/" target="_blank" rel="noopener noreferrer" class="nav-link">Website Khóa Học</a>
             <a href="https://github.com/mihail911/modern-software-dev-assignments" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub Assignments</a>
         </div>
@@ -1171,6 +1449,13 @@
 
     <!-- Main Content -->
     <main class="main-content" id="main-content" role="main" tabindex="-1">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" id="breadcrumb" aria-label="Đường dẫn">
+            <a href="index.html">Trang chủ</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="breadcrumb-current">Nội dung khóa học</span>
+        </nav>
+
         <!-- Hero -->
         <section class="hero">
             <h1>CS146S: Nhà Phát Triển Phần Mềm Hiện Đại</h1>
@@ -1196,6 +1481,17 @@
             <div class="card-header">
                 <h2>Tuần 1: Giới thiệu Coding LLMs</h2>
                 <span class="week-badge">Tuần 1</span>
+                <span class="reading-time">~45 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Hiểu cách Large Language Models (LLMs) hoạt động từ kiến trúc đến training</li>
+                    <li>Nắm vững các kỹ thuật Prompt Engineering: Zero-shot, Few-shot, Chain-of-Thought</li>
+                    <li>Biết cách áp dụng LLMs hiệu quả trong phát triển phần mềm</li>
+                    <li>Nhận biết các giới hạn và "tâm lý" của LLM (hallucination, context window)</li>
+                </ul>
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1225,6 +1521,19 @@
                 <li><strong>Thứ 6, 26/9:</strong> Power prompting cho LLMs - <a href="https://docs.google.com/presentation/d/1MIhw8p6TLGdbQ9TcxhXSs5BaPf5d_h77QY70RHNfeGs/edit?usp=drive_link" target="_blank">Slides</a></li>
             </ul>
 
+            <div class="section-title">Video bài giảng</div>
+            <p style="margin-bottom: 10px; color: var(--text-secondary); font-size: 0.9rem;"><strong>1. Deep Dive into LLMs</strong> - Andrej Karpathy</p>
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/7xTGNNLPyMI" title="Deep Dive into LLMs - Andrej Karpathy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <p class="video-link-print"><a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank">Xem video: Deep Dive into LLMs - Andrej Karpathy</a></p>
+
+            <p style="margin: 20px 0 10px; color: var(--text-secondary); font-size: 0.9rem;"><strong>2. AI Prompt Engineering: A Deep Dive</strong> - Anthropic</p>
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/T9aRN5JkmL8" title="AI Prompt Engineering: A Deep Dive - Anthropic" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <p class="video-link-print"><a href="https://www.youtube.com/watch?v=T9aRN5JkmL8" target="_blank">Xem video: AI Prompt Engineering: A Deep Dive - Anthropic</a></p>
+
             <div class="section-title">Tài liệu tham khảo thêm</div>
             <ul>
                 <li><a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank">Deep Dive into LLMs</a> - Andrej Karpathy (YouTube)</li>
@@ -1240,6 +1549,21 @@
             <div class="card-header">
                 <h2>Tuần 2: Giải Phẫu của Coding Agents</h2>
                 <span class="week-badge">Tuần 2</span>
+                <span class="reading-time">~60 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Hiểu kiến trúc và các thành phần cốt lõi của Coding Agents</li>
+                    <li>Nắm vững Model Context Protocol (MCP) - tiêu chuẩn kết nối AI với tools</li>
+                    <li>Biết cách implement tool use và function calling</li>
+                    <li>Có thể xây dựng custom MCP server từ đầu</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1, hiểu cơ bản về prompting và LLM
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1290,6 +1614,21 @@
             <div class="card-header">
                 <h2>Tuần 3: The AI IDE</h2>
                 <span class="week-badge">Tuần 3</span>
+                <span class="reading-time">~50 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Hiểu cách quản lý context và giúp AI hiểu code của bạn</li>
+                    <li>Viết PRD (Product Requirements Document) hiệu quả cho AI agents</li>
+                    <li>Cấu hình IDE tối ưu cho AI-assisted development</li>
+                    <li>Áp dụng được các pattern làm việc với AI trong codebase phức tạp</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-2, có kinh nghiệm cơ bản với IDE (VS Code, Cursor)
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1336,6 +1675,21 @@
             <div class="card-header">
                 <h2>Tuần 4: Coding Agent Patterns</h2>
                 <span class="week-badge">Tuần 4</span>
+                <span class="reading-time">~55 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Quản lý các mức độ tự chủ (autonomy levels) của AI agents</li>
+                    <li>Áp dụng các pattern cộng tác human-agent hiệu quả</li>
+                    <li>Sử dụng Claude Code với best practices từ Anthropic</li>
+                    <li>Thiết kế workflow phù hợp cho từng loại task</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-3, đã cài đặt và sử dụng Claude Code hoặc Cursor
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1381,6 +1735,21 @@
             <div class="card-header">
                 <h2>Tuần 5: The Modern Terminal</h2>
                 <span class="week-badge">Tuần 5</span>
+                <span class="reading-time">~35 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Sử dụng AI-enhanced terminal (Warp) hiệu quả</li>
+                    <li>Tự động hóa các tác vụ terminal với AI</li>
+                    <li>Phân biệt khi nào dùng Warp vs Claude Code</li>
+                    <li>Xây dựng scripts và workflows với AI assistance</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-4, quen thuộc với command line cơ bản
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1421,6 +1790,21 @@
             <div class="card-header">
                 <h2>Tuần 6: AI Testing và Security</h2>
                 <span class="week-badge">Tuần 6</span>
+                <span class="reading-time">~65 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Hiểu OWASP Top 10 và các lỗ hổng bảo mật phổ biến</li>
+                    <li>Phân biệt và áp dụng SAST vs DAST trong testing</li>
+                    <li>Phát hiện vulnerabilities trong AI-generated code</li>
+                    <li>Bảo vệ hệ thống khỏi prompt injection và các tấn công AI</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-5, có kiến thức cơ bản về web security
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1469,6 +1853,21 @@
             <div class="card-header">
                 <h2>Tuần 7: Modern Software Support</h2>
                 <span class="week-badge">Tuần 7</span>
+                <span class="reading-time">~50 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Đánh giá và tin tưởng AI code systems một cách có cơ sở</li>
+                    <li>Thực hiện code review hiệu quả với AI assistance</li>
+                    <li>Sử dụng AI để debugging và diagnostics</li>
+                    <li>Tạo documentation thông minh với AI</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-6, có kinh nghiệm code review
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1515,6 +1914,21 @@
             <div class="card-header">
                 <h2>Tuần 8: Automated UI và App Building</h2>
                 <span class="week-badge">Tuần 8</span>
+                <span class="reading-time">~30 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Xây dựng UI/UX prototypes nhanh với AI (v0, Lovable)</li>
+                    <li>Tạo full-stack apps từ single prompt</li>
+                    <li>Iterate nhanh trên designs với AI feedback</li>
+                    <li>Hiểu giới hạn và best practices của AI UI generation</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-7, có kiến thức cơ bản về frontend (HTML/CSS/JS)
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1540,6 +1954,21 @@
             <div class="card-header">
                 <h2>Tuần 9: Agents Post-Deployment</h2>
                 <span class="week-badge">Tuần 9</span>
+                <span class="reading-time">~55 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Thiết lập monitoring và observability cho AI systems</li>
+                    <li>Triển khai automated incident response với AI</li>
+                    <li>Sử dụng AI để troubleshoot Kubernetes và infrastructure</li>
+                    <li>Áp dụng SRE principles: Error Budgets, SLIs/SLOs</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-8, có kinh nghiệm với deployment và DevOps cơ bản
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1587,6 +2016,21 @@
             <div class="card-header">
                 <h2>Week 10: What's Next for AI Software Engineering</h2>
                 <span class="week-badge">Tuần 10</span>
+                <span class="reading-time">~20 phút đọc</span>
+            </div>
+
+            <div class="learning-objectives">
+                <h4>Sau tuần này, bạn sẽ biết:</h4>
+                <ul>
+                    <li>Dự đoán xu hướng phát triển phần mềm trong 5-10 năm tới</li>
+                    <li>Hiểu vai trò của developer sẽ thay đổi như thế nào</li>
+                    <li>Chuẩn bị career path phù hợp với kỷ nguyên AI</li>
+                    <li>Nhận biết các mô hình lập trình AI mới đang nổi lên</li>
+                </ul>
+            </div>
+
+            <div class="prerequisites">
+                <strong>Yêu cầu:</strong> Hoàn thành Tuần 1-9
             </div>
 
             <div class="section-title">Chủ đề</div>
@@ -1664,9 +2108,10 @@
             <p>CS146S: The Modern Software Developer - Stanford University, Fall 2025</p>
             <p>Giảng viên: <a href="https://www.mihaileric.com/" target="_blank" rel="noopener noreferrer">Mihail Eric</a></p>
             <p>Tài liệu được dịch bởi <strong>Claude Code (Opus 4.5)</strong> và biên soạn bởi <a href="https://www.facebook.com/m.duongvandinh" target="_blank">Dương Văn Định</a> | <a href="https://www.linkedin.com/in/duong-dinh-153375b7/" target="_blank">LinkedIn</a></p>
+            <p class="last-updated">Cập nhật lần cuối: 21/12/2025</p>
             <div style="margin-top: 20px; padding: 15px; background: var(--bg-card); border-radius: 10px; display: inline-block;">
                 <p style="margin-bottom: 10px;">☕ Nếu tài liệu hữu ích, hãy mời mình một cốc cà phê nhé!</p>
-                <img src="qr.png" alt="QR Code Donate" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img src="qr.png" alt="Mã QR để donate - Quét bằng app ngân hàng để ủng hộ tác giả" style="width: 150px; height: 150px; border-radius: 8px;">
             </div>
         </footer>
     </main>
@@ -2053,6 +2498,60 @@
                         modalContent.innerHTML = basicMarkdownParse(markdown);
                     }
 
+                    // Handle anchor links within modal (Table of Contents)
+                    modalContent.querySelectorAll('a[href^="#"]').forEach(function(link) {
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const targetId = this.getAttribute('href').substring(1);
+                            const decodedId = decodeURIComponent(targetId);
+
+                            // Try multiple ways to find the target element
+                            let targetElement = null;
+
+                            // 1. Try exact ID match
+                            try {
+                                targetElement = modalContent.querySelector('#' + CSS.escape(decodedId));
+                            } catch(err) {}
+
+                            // 2. Try attribute selector
+                            if (!targetElement) {
+                                targetElement = modalContent.querySelector('[id="' + decodedId + '"]');
+                            }
+
+                            // 3. Try finding heading by text content (normalized)
+                            if (!targetElement) {
+                                const normalizedTarget = decodedId.toLowerCase().replace(/[^a-z0-9àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]/g, '');
+                                const headings = modalContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                                headings.forEach(function(h) {
+                                    if (!targetElement) {
+                                        const headingText = h.textContent.toLowerCase().replace(/[^a-z0-9àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]/g, '');
+                                        if (headingText.includes(normalizedTarget) || normalizedTarget.includes(headingText)) {
+                                            targetElement = h;
+                                        }
+                                    }
+                                });
+                            }
+
+                            // 4. Try matching by number prefix (e.g., "1-" matches "1.")
+                            if (!targetElement) {
+                                const numberMatch = decodedId.match(/^(\d+)/);
+                                if (numberMatch) {
+                                    const num = numberMatch[1];
+                                    const headings = modalContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                                    headings.forEach(function(h) {
+                                        if (!targetElement && h.textContent.trim().startsWith(num + '.')) {
+                                            targetElement = h;
+                                        }
+                                    });
+                                }
+                            }
+
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        });
+                    });
+
                     // Scroll to top
                     modalContent.scrollTop = 0;
                 })
@@ -2119,6 +2618,124 @@
             html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
 
             return html;
+        }
+    </script>
+
+    <!-- Font Size Toggle Script -->
+    <script>
+        (function() {
+            const FONT_SIZE_KEY = 'cs146s-font-size';
+            const fontSizes = ['normal', 'large', 'xlarge'];
+            let currentSize = localStorage.getItem(FONT_SIZE_KEY) || 'normal';
+
+            function applyFontSize(size) {
+                document.body.classList.remove('font-size-large', 'font-size-xlarge');
+                if (size === 'large') {
+                    document.body.classList.add('font-size-large');
+                } else if (size === 'xlarge') {
+                    document.body.classList.add('font-size-xlarge');
+                }
+                localStorage.setItem(FONT_SIZE_KEY, size);
+                currentSize = size;
+            }
+
+            // Apply saved font size on load
+            applyFontSize(currentSize);
+
+            // Font size controls
+            document.getElementById('font-increase').addEventListener('click', function() {
+                const idx = fontSizes.indexOf(currentSize);
+                if (idx < fontSizes.length - 1) {
+                    applyFontSize(fontSizes[idx + 1]);
+                }
+            });
+
+            document.getElementById('font-decrease').addEventListener('click', function() {
+                const idx = fontSizes.indexOf(currentSize);
+                if (idx > 0) {
+                    applyFontSize(fontSizes[idx - 1]);
+                }
+            });
+
+            document.getElementById('font-reset').addEventListener('click', function() {
+                applyFontSize('normal');
+            });
+        })();
+    </script>
+
+    <!-- Preload Markdown on Hover -->
+    <script>
+        (function() {
+            const preloadedFiles = new Set();
+
+            document.querySelectorAll('.md-link').forEach(function(link) {
+                link.addEventListener('mouseenter', function() {
+                    const onclick = this.getAttribute('onclick');
+                    if (onclick) {
+                        const match = onclick.match(/openMarkdown\('([^']+)'/);
+                        if (match && match[1] && !preloadedFiles.has(match[1])) {
+                            preloadedFiles.add(match[1]);
+                            // Preload the file
+                            fetch(match[1]).then(function() {
+                                // File is now in browser cache
+                            }).catch(function() {
+                                // Ignore preload errors
+                            });
+                        }
+                    }
+                });
+            });
+        })();
+    </script>
+
+    <!-- Dynamic Breadcrumb Update -->
+    <script>
+        (function() {
+            const breadcrumb = document.getElementById('breadcrumb');
+            const sections = document.querySelectorAll('section[id^="week"]');
+
+            function updateBreadcrumb() {
+                let currentSection = null;
+                sections.forEach(function(section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 150 && rect.bottom > 150) {
+                        currentSection = section;
+                    }
+                });
+
+                if (currentSection) {
+                    const weekTitle = currentSection.querySelector('.card-header h2').textContent;
+                    breadcrumb.innerHTML = `
+                        <a href="index.html">Trang chủ</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="#main-content">Nội dung khóa học</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">${weekTitle}</span>
+                    `;
+                } else {
+                    breadcrumb.innerHTML = `
+                        <a href="index.html">Trang chủ</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Nội dung khóa học</span>
+                    `;
+                }
+            }
+
+            window.addEventListener('scroll', updateBreadcrumb);
+            updateBreadcrumb();
+        })();
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('ServiceWorker registered: ', registration.scope);
+                }).catch(function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
         }
     </script>
 </body>

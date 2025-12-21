@@ -540,6 +540,19 @@
             text-decoration: underline;
         }
 
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -667,12 +680,13 @@
         <!-- Curriculum -->
         <section class="curriculum">
             <h2>Chương trình học</h2>
-            <table class="curriculum-table">
+            <table class="curriculum-table" role="table" aria-label="Chương trình học 10 tuần">
+                <caption class="sr-only">Bảng chương trình học CS146S gồm 10 tuần với các chủ đề về AI Development</caption>
                 <thead>
                     <tr>
-                        <th>Tuần</th>
-                        <th>Chủ đề</th>
-                        <th>Nội dung chính</th>
+                        <th scope="col">Tuần</th>
+                        <th scope="col">Chủ đề</th>
+                        <th scope="col">Nội dung chính</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -817,10 +831,13 @@
             </p>
             <div style="margin-top: 20px; padding: 15px; background: var(--bg-card); border-radius: 10px; display: inline-block;">
                 <p style="margin-bottom: 10px;">☕ Nếu tài liệu hữu ích, hãy mời mình một cốc cà phê nhé!</p>
-                <img src="qr.png" alt="QR Code Donate" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img src="qr.png" alt="Mã QR để donate - Quét bằng app ngân hàng để ủng hộ tác giả" style="width: 150px; height: 150px; border-radius: 8px;">
             </div>
             <p style="margin-top: 15px; font-size: 0.85rem;">
                 © 2025 Stanford University CS146S - The Modern Software Developer
+            </p>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-secondary);">
+                📅 Cập nhật lần cuối: 21/12/2025
             </p>
         </footer>
     </div>
