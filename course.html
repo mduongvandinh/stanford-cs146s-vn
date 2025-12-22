@@ -1278,67 +1278,129 @@
             align-items: center;
         }
 
-        /* Learning Card with Format Tabs */
-        .learning-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
+        /* Learning Roadmap - Horizontal Timeline */
+        .learning-roadmap {
+            display: flex;
+            overflow-x: auto;
+            gap: 0;
+            padding: 20px 10px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .learning-roadmap::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .learning-roadmap::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 3px;
+        }
+
+        .learning-roadmap::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .roadmap-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 200px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        /* Connector line between steps */
+        .roadmap-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: calc(50% + 20px);
+            width: calc(100% - 40px);
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 0;
+        }
+
+        .roadmap-node {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
             transition: all 0.3s;
         }
 
-        .learning-card:hover {
+        .roadmap-step:hover .roadmap-node {
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .roadmap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 12px;
+            width: 180px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .roadmap-step:hover .roadmap-card {
             border-color: var(--primary);
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+            transform: translateY(-4px);
         }
 
-        .learning-card-header {
-            margin-bottom: 12px;
-        }
-
-        .learning-card-title {
+        .roadmap-title {
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-primary);
-            line-height: 1.4;
+            line-height: 1.3;
+            margin-bottom: 8px;
         }
 
-        .learning-card-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-
-        .learning-card-tabs {
+        .roadmap-tabs {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .format-tab-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
-            padding: 10px 16px;
+            padding: 8px 12px;
             border: 1px solid var(--border);
             border-radius: 8px;
             background: var(--bg-primary);
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none;
+            width: 100%;
         }
 
         .format-tab-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .format-tab-btn .tab-icon {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .format-tab-btn.video {
@@ -1371,6 +1433,30 @@
             background: rgba(139, 92, 246, 0.1);
         }
 
+        /* Difficulty badge */
+        .difficulty-badge {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: auto;
+            font-weight: 400;
+        }
+
+        .difficulty-badge.easy {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .difficulty-badge.medium {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .difficulty-badge.hard {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--primary-light);
+        }
+
         /* Reading materials container */
         .reading-materials {
             display: flex;
@@ -1378,14 +1464,16 @@
             gap: 0;
         }
 
-        /* External link card */
+        /* External link card - below roadmap */
         .learning-card.external {
             background: transparent;
             border: 1px dashed var(--border);
             padding: 12px 16px;
+            margin-top: 16px;
             display: flex;
             align-items: center;
             gap: 12px;
+            border-radius: 10px;
         }
 
         .learning-card.external:hover {
@@ -1398,18 +1486,39 @@
             flex: 1;
         }
 
+        .learning-card.external .learning-card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .learning-card.external .learning-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
         .learning-card.external .external-icon {
             color: var(--text-secondary);
             font-size: 1.2rem;
         }
 
-        @media (max-width: 600px) {
-            .learning-card-tabs {
-                flex-direction: column;
+        @media (max-width: 768px) {
+            .learning-roadmap {
+                padding: 15px 5px;
             }
 
-            .format-tab-btn {
-                justify-content: center;
+            .roadmap-step {
+                min-width: 160px;
+            }
+
+            .roadmap-card {
+                width: 150px;
+                padding: 12px;
+            }
+
+            .roadmap-title {
+                font-size: 0.85rem;
             }
         }
 
@@ -1654,100 +1763,115 @@
                 <li><strong>How to prompt effectively</strong> - Cách prompt hiệu quả</li>
             </ul>
 
-            <div class="section-title">Tài liệu đọc</div>
-            <div class="reading-materials">
-                <!-- 1. Deep Dive into LLMs -->
-                <div class="learning-card">
-                    <div class="learning-card-header">
-                        <div class="learning-card-title">Deep Dive into LLMs</div>
-                        <div class="learning-card-desc">Hướng dẫn hiểu video của Andrej Karpathy (tiếng Việt)</div>
-                    </div>
-                    <div class="learning-card-tabs">
-                        <button class="format-tab-btn video" onclick="openVideoModal('week1/Deep Dive into LLMs Video.mp4', 'Deep Dive into LLMs - Video Tóm Tắt')">
-                            <span class="tab-icon">🎬</span> Video
-                        </button>
-                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/Deep Dive into LLMs SD.pdf', 'Deep Dive into LLMs - Slides')">
-                            <span class="tab-icon">📑</span> Slides
-                        </button>
-                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/deep-dive-llms-explained.md', 'Deep Dive into LLMs - Andrej Karpathy')">
-                            <span class="tab-icon">📖</span> Chi tiết
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2. Prompt Engineering Overview -->
-                <div class="learning-card">
-                    <div class="learning-card-header">
-                        <div class="learning-card-title">Prompt Engineering Overview</div>
-                        <div class="learning-card-desc">Tổng quan Prompt Engineering cơ bản (tiếng Việt)</div>
-                    </div>
-                    <div class="learning-card-tabs">
-                        <button class="format-tab-btn video" onclick="openVideoModal('week1/Prompt Engineering Overview Video.mp4', 'Prompt Engineering Overview - Video Tóm Tắt')">
-                            <span class="tab-icon">🎬</span> Video
-                        </button>
-                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/Prompt Engineering Overview SD.pdf', 'Prompt Engineering Overview - Slides')">
-                            <span class="tab-icon">📑</span> Slides
-                        </button>
-                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/prompt-engineering-google-cloud.md', 'Prompt Engineering Overview')">
-                            <span class="tab-icon">📖</span> Chi tiết
-                        </button>
+            <div class="section-title">Lộ trình học tập</div>
+            <div class="learning-roadmap">
+                <!-- Step 1: Deep Dive into LLMs -->
+                <div class="roadmap-step">
+                    <div class="roadmap-node">1</div>
+                    <div class="roadmap-card">
+                        <div class="roadmap-title">Deep Dive into LLMs</div>
+                        <div class="roadmap-tabs">
+                            <button class="format-tab-btn video" title="Đơn giản - Video tóm tắt dễ hiểu" onclick="openVideoModal('week1/Deep Dive into LLMs Video.mp4', 'Deep Dive into LLMs - Video Tóm Tắt')">
+                                <span class="tab-icon">🎬</span> Video
+                                <span class="difficulty-badge easy">Đơn giản</span>
+                            </button>
+                            <button class="format-tab-btn slides" title="Trung bình - Slides chi tiết" onclick="openPdfModal('week1/Deep Dive into LLMs SD.pdf', 'Deep Dive into LLMs - Slides')">
+                                <span class="tab-icon">📑</span> Slides
+                                <span class="difficulty-badge medium">Trung bình</span>
+                            </button>
+                            <button class="format-tab-btn detail" title="Nâng cao - Tài liệu đầy đủ" onclick="openMarkdown('week1/deep-dive-llms-explained.md', 'Deep Dive into LLMs - Andrej Karpathy')">
+                                <span class="tab-icon">📖</span> Chi tiết
+                                <span class="difficulty-badge hard">Nâng cao</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 3. Prompt Engineering Guide -->
-                <div class="learning-card">
-                    <div class="learning-card-header">
-                        <div class="learning-card-title">Prompt Engineering Guide</div>
-                        <div class="learning-card-desc">Hướng dẫn chi tiết các kỹ thuật: CoT, RAG, ReAct, ToT... (tiếng Việt)</div>
-                    </div>
-                    <div class="learning-card-tabs">
-                        <button class="format-tab-btn video" onclick="openVideoModal('week1/Prompt Engineering Guide Video.mp4', 'Prompt Engineering Guide - Video Tóm Tắt')">
-                            <span class="tab-icon">🎬</span> Video
-                        </button>
-                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/Prompt Engineering Guide SD.pdf', 'Prompt Engineering Guide - Slides')">
-                            <span class="tab-icon">📑</span> Slides
-                        </button>
-                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/prompting-techniques-guide.md', 'Prompt Engineering Guide')">
-                            <span class="tab-icon">📖</span> Chi tiết
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 4. AI Prompt Engineering: A Deep Dive -->
-                <div class="learning-card">
-                    <div class="learning-card-header">
-                        <div class="learning-card-title">AI Prompt Engineering: A Deep Dive</div>
-                        <div class="learning-card-desc">Tổng hợp buổi thảo luận từ Anthropic (tiếng Việt)</div>
-                    </div>
-                    <div class="learning-card-tabs">
-                        <button class="format-tab-btn video" onclick="openVideoModal('week1/AI Prompt Engineering A Deep Dive Video.mp4', 'AI Prompt Engineering - Video Tóm Tắt')">
-                            <span class="tab-icon">🎬</span> Video
-                        </button>
-                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/AI Prompt Engineering A Deep Dive SD.pdf', 'AI Prompt Engineering - Slides')">
-                            <span class="tab-icon">📑</span> Slides
-                        </button>
-                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/prompt-engineering-deep-dive.md', 'AI Prompt Engineering: A Deep Dive')">
-                            <span class="tab-icon">📖</span> Chi tiết
-                        </button>
+                <!-- Step 2: Prompt Engineering Overview -->
+                <div class="roadmap-step">
+                    <div class="roadmap-node">2</div>
+                    <div class="roadmap-card">
+                        <div class="roadmap-title">Prompt Engineering Overview</div>
+                        <div class="roadmap-tabs">
+                            <button class="format-tab-btn video" title="Đơn giản - Video tóm tắt dễ hiểu" onclick="openVideoModal('week1/Prompt Engineering Overview Video.mp4', 'Prompt Engineering Overview - Video Tóm Tắt')">
+                                <span class="tab-icon">🎬</span> Video
+                                <span class="difficulty-badge easy">Đơn giản</span>
+                            </button>
+                            <button class="format-tab-btn slides" title="Trung bình - Slides chi tiết" onclick="openPdfModal('week1/Prompt Engineering Overview SD.pdf', 'Prompt Engineering Overview - Slides')">
+                                <span class="tab-icon">📑</span> Slides
+                                <span class="difficulty-badge medium">Trung bình</span>
+                            </button>
+                            <button class="format-tab-btn detail" title="Nâng cao - Tài liệu đầy đủ" onclick="openMarkdown('week1/prompt-engineering-google-cloud.md', 'Prompt Engineering Overview')">
+                                <span class="tab-icon">📖</span> Chi tiết
+                                <span class="difficulty-badge hard">Nâng cao</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 5. How OpenAI Uses Codex -->
-                <div class="learning-card">
-                    <div class="learning-card-header">
-                        <div class="learning-card-title">How OpenAI Uses Codex</div>
-                        <div class="learning-card-desc">OpenAI sử dụng Codex như thế nào (tiếng Việt)</div>
+                <!-- Step 3: Prompt Engineering Guide -->
+                <div class="roadmap-step">
+                    <div class="roadmap-node">3</div>
+                    <div class="roadmap-card">
+                        <div class="roadmap-title">Prompt Engineering Guide</div>
+                        <div class="roadmap-tabs">
+                            <button class="format-tab-btn video" title="Đơn giản - Video tóm tắt dễ hiểu" onclick="openVideoModal('week1/Prompt Engineering Guide Video.mp4', 'Prompt Engineering Guide - Video Tóm Tắt')">
+                                <span class="tab-icon">🎬</span> Video
+                                <span class="difficulty-badge easy">Đơn giản</span>
+                            </button>
+                            <button class="format-tab-btn slides" title="Trung bình - Slides chi tiết" onclick="openPdfModal('week1/Prompt Engineering Guide SD.pdf', 'Prompt Engineering Guide - Slides')">
+                                <span class="tab-icon">📑</span> Slides
+                                <span class="difficulty-badge medium">Trung bình</span>
+                            </button>
+                            <button class="format-tab-btn detail" title="Nâng cao - Tài liệu đầy đủ" onclick="openMarkdown('week1/prompting-techniques-guide.md', 'Prompt Engineering Guide')">
+                                <span class="tab-icon">📖</span> Chi tiết
+                                <span class="difficulty-badge hard">Nâng cao</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="learning-card-tabs">
-                        <button class="format-tab-btn video" onclick="openVideoModal('week1/How OpenAI Uses Codex Video.mp4', 'How OpenAI Uses Codex - Video Tóm Tắt')">
-                            <span class="tab-icon">🎬</span> Video
-                        </button>
-                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/How OpenAI Uses Codex SD.pdf', 'How OpenAI Uses Codex - Slides')">
-                            <span class="tab-icon">📑</span> Slides
-                        </button>
-                        <button class="format-tab-btn detail" onclick="window.open('https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf', '_blank')">
-                            <span class="tab-icon">📖</span> Chi tiết
-                        </button>
+                </div>
+
+                <!-- Step 4: AI Prompt Engineering: A Deep Dive -->
+                <div class="roadmap-step">
+                    <div class="roadmap-node">4</div>
+                    <div class="roadmap-card">
+                        <div class="roadmap-title">AI Prompt Engineering: A Deep Dive</div>
+                        <div class="roadmap-tabs">
+                            <button class="format-tab-btn video" title="Đơn giản - Video tóm tắt dễ hiểu" onclick="openVideoModal('week1/AI Prompt Engineering A Deep Dive Video.mp4', 'AI Prompt Engineering - Video Tóm Tắt')">
+                                <span class="tab-icon">🎬</span> Video
+                                <span class="difficulty-badge easy">Đơn giản</span>
+                            </button>
+                            <button class="format-tab-btn slides" title="Trung bình - Slides chi tiết" onclick="openPdfModal('week1/AI Prompt Engineering A Deep Dive SD.pdf', 'AI Prompt Engineering - Slides')">
+                                <span class="tab-icon">📑</span> Slides
+                                <span class="difficulty-badge medium">Trung bình</span>
+                            </button>
+                            <button class="format-tab-btn detail" title="Nâng cao - Tài liệu đầy đủ" onclick="openMarkdown('week1/prompt-engineering-deep-dive.md', 'AI Prompt Engineering: A Deep Dive')">
+                                <span class="tab-icon">📖</span> Chi tiết
+                                <span class="difficulty-badge hard">Nâng cao</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: How OpenAI Uses Codex -->
+                <div class="roadmap-step">
+                    <div class="roadmap-node">5</div>
+                    <div class="roadmap-card">
+                        <div class="roadmap-title">How OpenAI Uses Codex</div>
+                        <div class="roadmap-tabs">
+                            <button class="format-tab-btn video" title="Đơn giản - Video tóm tắt dễ hiểu" onclick="openVideoModal('week1/How OpenAI Uses Codex Video.mp4', 'How OpenAI Uses Codex - Video Tóm Tắt')">
+                                <span class="tab-icon">🎬</span> Video
+                                <span class="difficulty-badge easy">Đơn giản</span>
+                            </button>
+                            <button class="format-tab-btn slides" title="Trung bình - Slides chi tiết" onclick="openPdfModal('week1/How OpenAI Uses Codex SD.pdf', 'How OpenAI Uses Codex - Slides')">
+                                <span class="tab-icon">📑</span> Slides
+                                <span class="difficulty-badge medium">Trung bình</span>
+                            </button>
+                            <button class="format-tab-btn detail" title="Nâng cao - Tài liệu đầy đủ" onclick="window.open('https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf', '_blank')">
+                                <span class="tab-icon">📖</span> Chi tiết
+                                <span class="difficulty-badge hard">Nâng cao</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
