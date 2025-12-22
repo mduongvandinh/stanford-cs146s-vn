@@ -1260,6 +1260,159 @@
             border-radius: 12px;
         }
 
+        /* Multi-format badge */
+        .multi-format-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .md-link.multi-format {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Learning Card with Format Tabs */
+        .learning-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .learning-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+        }
+
+        .learning-card-header {
+            margin-bottom: 12px;
+        }
+
+        .learning-card-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .learning-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .learning-card-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .format-tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .format-tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .format-tab-btn .tab-icon {
+            font-size: 1.1rem;
+        }
+
+        .format-tab-btn.video {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .format-tab-btn.video:hover {
+            border-color: var(--success);
+            color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .format-tab-btn.slides {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .format-tab-btn.slides:hover {
+            border-color: var(--warning);
+            color: var(--warning);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .format-tab-btn.detail {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .format-tab-btn.detail:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-light);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Reading materials container */
+        .reading-materials {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* External link card */
+        .learning-card.external {
+            background: transparent;
+            border: 1px dashed var(--border);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .learning-card.external:hover {
+            border-color: var(--secondary);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .learning-card.external .learning-card-header {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .learning-card.external .external-icon {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .learning-card-tabs {
+                flex-direction: column;
+            }
+
+            .format-tab-btn {
+                justify-content: center;
+            }
+        }
+
         /* Enhanced Focus Indicators */
         a:focus-visible,
         button:focus-visible,
@@ -1502,13 +1655,102 @@
             </ul>
 
             <div class="section-title">Tài liệu đọc</div>
-            <ul>
-                <li><a href="#" class="md-link" onclick="openMarkdown('week1/deep-dive-llms-explained.md', 'Deep Dive into LLMs'); return false;">Deep Dive into LLMs</a> - Hướng dẫn hiểu video của Andrej Karpathy (tiếng Việt)</li>
-                <li><a href="#" class="md-link" onclick="openMarkdown('week1/prompt-engineering-deep-dive.md', 'AI Prompt Engineering: A Deep Dive'); return false;">AI Prompt Engineering: A Deep Dive</a> - Tổng hợp buổi thảo luận từ Anthropic (tiếng Việt)</li>
-                <li><a href="#" class="md-link" onclick="openMarkdown('week1/prompt-engineering-google-cloud.md', 'Prompt Engineering Overview'); return false;">Prompt Engineering Overview</a> - Tổng quan Prompt Engineering cơ bản (tiếng Việt)</li>
-                <li><a href="#" class="md-link" onclick="openMarkdown('week1/prompting-techniques-guide.md', 'Các Kỹ Thuật Prompting Nâng Cao'); return false;">Prompting Techniques Guide</a> - Hướng dẫn chi tiết các kỹ thuật: CoT, RAG, ReAct, ToT... (tiếng Việt)</li>
-                <li><a href="https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf" target="_blank">How OpenAI Uses Codex</a> - OpenAI sử dụng Codex như thế nào</li>
-            </ul>
+            <div class="reading-materials">
+                <!-- 1. Deep Dive into LLMs -->
+                <div class="learning-card">
+                    <div class="learning-card-header">
+                        <div class="learning-card-title">Deep Dive into LLMs</div>
+                        <div class="learning-card-desc">Hướng dẫn hiểu video của Andrej Karpathy (tiếng Việt)</div>
+                    </div>
+                    <div class="learning-card-tabs">
+                        <button class="format-tab-btn video" onclick="openVideoModal('week1/Deep Dive into LLMs Video.mp4', 'Deep Dive into LLMs - Video Tóm Tắt')">
+                            <span class="tab-icon">🎬</span> Video
+                        </button>
+                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/Deep Dive into LLMs SD.pdf', 'Deep Dive into LLMs - Slides')">
+                            <span class="tab-icon">📑</span> Slides
+                        </button>
+                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/deep-dive-llms-explained.md', 'Deep Dive into LLMs - Andrej Karpathy')">
+                            <span class="tab-icon">📖</span> Chi tiết
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Prompt Engineering Overview -->
+                <div class="learning-card">
+                    <div class="learning-card-header">
+                        <div class="learning-card-title">Prompt Engineering Overview</div>
+                        <div class="learning-card-desc">Tổng quan Prompt Engineering cơ bản (tiếng Việt)</div>
+                    </div>
+                    <div class="learning-card-tabs">
+                        <button class="format-tab-btn video" onclick="openVideoModal('week1/Prompt Engineering Overview Video.mp4', 'Prompt Engineering Overview - Video Tóm Tắt')">
+                            <span class="tab-icon">🎬</span> Video
+                        </button>
+                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/Prompt Engineering Overview SD.pdf', 'Prompt Engineering Overview - Slides')">
+                            <span class="tab-icon">📑</span> Slides
+                        </button>
+                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/prompt-engineering-google-cloud.md', 'Prompt Engineering Overview')">
+                            <span class="tab-icon">📖</span> Chi tiết
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Prompt Engineering Guide -->
+                <div class="learning-card">
+                    <div class="learning-card-header">
+                        <div class="learning-card-title">Prompt Engineering Guide</div>
+                        <div class="learning-card-desc">Hướng dẫn chi tiết các kỹ thuật: CoT, RAG, ReAct, ToT... (tiếng Việt)</div>
+                    </div>
+                    <div class="learning-card-tabs">
+                        <button class="format-tab-btn video" onclick="openVideoModal('week1/Prompt Engineering Guide Video.mp4', 'Prompt Engineering Guide - Video Tóm Tắt')">
+                            <span class="tab-icon">🎬</span> Video
+                        </button>
+                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/Prompt Engineering Guide SD.pdf', 'Prompt Engineering Guide - Slides')">
+                            <span class="tab-icon">📑</span> Slides
+                        </button>
+                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/prompting-techniques-guide.md', 'Prompt Engineering Guide')">
+                            <span class="tab-icon">📖</span> Chi tiết
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. AI Prompt Engineering: A Deep Dive -->
+                <div class="learning-card">
+                    <div class="learning-card-header">
+                        <div class="learning-card-title">AI Prompt Engineering: A Deep Dive</div>
+                        <div class="learning-card-desc">Tổng hợp buổi thảo luận từ Anthropic (tiếng Việt)</div>
+                    </div>
+                    <div class="learning-card-tabs">
+                        <button class="format-tab-btn video" onclick="openVideoModal('week1/AI Prompt Engineering A Deep Dive Video.mp4', 'AI Prompt Engineering - Video Tóm Tắt')">
+                            <span class="tab-icon">🎬</span> Video
+                        </button>
+                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/AI Prompt Engineering A Deep Dive SD.pdf', 'AI Prompt Engineering - Slides')">
+                            <span class="tab-icon">📑</span> Slides
+                        </button>
+                        <button class="format-tab-btn detail" onclick="openMarkdown('week1/prompt-engineering-deep-dive.md', 'AI Prompt Engineering: A Deep Dive')">
+                            <span class="tab-icon">📖</span> Chi tiết
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5. How OpenAI Uses Codex -->
+                <div class="learning-card">
+                    <div class="learning-card-header">
+                        <div class="learning-card-title">How OpenAI Uses Codex</div>
+                        <div class="learning-card-desc">OpenAI sử dụng Codex như thế nào (tiếng Việt)</div>
+                    </div>
+                    <div class="learning-card-tabs">
+                        <button class="format-tab-btn video" onclick="openVideoModal('week1/How OpenAI Uses Codex Video.mp4', 'How OpenAI Uses Codex - Video Tóm Tắt')">
+                            <span class="tab-icon">🎬</span> Video
+                        </button>
+                        <button class="format-tab-btn slides" onclick="openPdfModal('week1/How OpenAI Uses Codex SD.pdf', 'How OpenAI Uses Codex - Slides')">
+                            <span class="tab-icon">📑</span> Slides
+                        </button>
+                        <button class="format-tab-btn detail" onclick="window.open('https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf', '_blank')">
+                            <span class="tab-icon">📖</span> Chi tiết
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <div class="section-title">Bài tập</div>
             <ul>
@@ -2583,6 +2825,51 @@
             const modal = document.getElementById('mdModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
+        }
+
+        // Open Video in Modal
+        function openVideoModal(videoPath, title) {
+            const modal = document.getElementById('mdModal');
+            const modalTitle = document.getElementById('mdModalTitle');
+            const modalContent = document.getElementById('mdModalContent');
+
+            modal.classList.add('active');
+            modalTitle.textContent = title;
+            document.body.style.overflow = 'hidden';
+
+            modalContent.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <video controls autoplay style="max-width: 100%; max-height: 70vh; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                        <source src="${videoPath}" type="video/mp4">
+                        Trình duyệt không hỗ trợ video.
+                    </video>
+                    <p style="margin-top: 15px; color: var(--text-secondary); font-size: 0.85rem;">
+                        🎧 Video tóm tắt được tạo bởi NotebookLM
+                    </p>
+                </div>
+            `;
+        }
+
+        // Open PDF in Modal
+        function openPdfModal(pdfPath, title) {
+            const modal = document.getElementById('mdModal');
+            const modalTitle = document.getElementById('mdModalTitle');
+            const modalContent = document.getElementById('mdModalContent');
+
+            modal.classList.add('active');
+            modalTitle.textContent = title;
+            document.body.style.overflow = 'hidden';
+
+            modalContent.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <iframe src="${pdfPath}" style="width: 100%; height: 75vh; border: none; border-radius: 12px;"></iframe>
+                    <div style="margin-top: 15px;">
+                        <a href="${pdfPath}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500;">
+                            📥 Tải PDF
+                        </a>
+                    </div>
+                </div>
+            `;
         }
 
         // Keyboard support
